@@ -1,0 +1,100 @@
+POST http://localhost:8080/getAllUser
+Accept: */*
+Cache-Control: no-cache
+username: admin
+password: 1234567
+
+<> 2019-12-10T045300.200.json
+
+###
+
+POST http://localhost:8080/Login
+Accept: */*
+Cache-Control: no-cache
+username: admin
+password: 1234567
+
+<> 2019-12-09T034624.200.json
+
+###
+
+POST http://localhost:8080/Login
+Accept: */*
+Cache-Control: no-cache
+username: admin
+password: 1234567
+
+<> 2019-12-09T034623.200.json
+
+###
+
+POST http://localhost:8080/Login
+Accept: */*
+Cache-Control: no-cache
+username: admin
+password: 1234567
+
+<> 2019-12-09T034617.200.json
+
+###
+
+POST http://localhost:8080/Login
+Accept: */*
+Cache-Control: no-cache
+username: admin
+password: 1234567
+
+<> 2019-12-09T034616.200.json
+
+###
+
+POST http://localhost:8080/Login
+Accept: */*
+Cache-Control: no-cache
+username: admin
+password: 1234567
+
+<> 2019-12-09T034615.200.json
+
+###
+
+POST http://localhost:8080/Login
+Accept: */*
+Cache-Control: no-cache
+username: admin
+password: 1234567
+
+<> 2019-12-09T034614.200.json
+
+###
+
+POST http://localhost:8080/Login
+Accept: */*
+Cache-Control: no-cache
+username: admin
+password: 1234567
+
+<> 2019-12-09T034613.200.json
+
+###
+
+POST http://localhost:8080/Login
+Accept: */*
+Cache-Control: no-cache
+username: admin
+password: 123456
+
+<> 2019-12-09T034545.200.json
+
+###
+
+POST http://localhost:8080/resources/
+Accept: */*
+Cache-Control: no-cache
+username: admin
+password: 123456
+
+<> 2019-12-09T034528.404.json
+
+###
+
