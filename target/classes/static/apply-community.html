@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html class="x-admin-sm">
+    
+    <head>
+        <meta charset="UTF-8">
+        <title>社团创立申请</title>
+        <meta name="renderer" content="webkit">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <link rel="stylesheet" href="./css/font.css">
+        <link rel="stylesheet" href="./css/xadmin.css">
+        <script src="./lib/layui/layui.js" charset="utf-8"></script>
+        <script type="text/javascript" src="./js/xadmin.js"></script>
+        <style type="text/css">
+            h2{
+                margin:0 auto;
+                text-align: center;
+            }
+            h1{
+                margin:0 auto;
+                text-align: center;
+                font-size: 40px;
+                margin-top: 20px;
+                margin-bottom: 20px;
+            }
+            table{
+                border-collapse:collapse;
+                text-align: center;
+                margin: 0 auto;
+                font-size: 15px;
+            }
+            table span{
+                display: inline-block;
+                width: 100px;
+                text-align: right;
+            }
+            #time span{
+                width: 30px;
+            }
+            .myInput{
+                width: 100%;
+                height: 40px;
+                font-size:15px;
+                border: none;
+                text-indent:10px;
+                float: left;
+                zoom:1;
+                outline: medium;
+            }
+            .myTextarea{
+                width: 100%;
+                height: 160px;
+                font-size:15px;
+                border: none;
+                float: left;
+                zoom:1;
+                outline: medium;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <div class="x-nav">
+            <span class="layui-breadcrumb">
+                <a href="">首页</a>
+                <a>
+                    <cite>社团创立申请</cite></a>
+            </span>
+            <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="刷新">
+                <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i>
+            </a>
+        </div>
+        <div class="layui-fluid">
+            <div class="layui-col-md12">
+                <div class="layui-card">
+                    <div class="layui-card-body ">
+                        <h1>社团申请表</h1>
+                        <form class="layui-form">
+
+                            <table border="1">
+                                <tr>
+                                    <td width="140" height="70;" align="center">社团名称</td>
+                                    <td width="470" colspan="6" ><input class="layui-input myInput" id="ap_name" name="ap_name" lay-verify="required|ap_name" autocomplete="off"/></td>
+                                </tr>
+                                <tr>
+                                    <td height="70">负责人姓名</td>
+                                    <td colspan="2"  width="180"><input class="myInput" id="ld_name" name="ld_name" lay-verify="required" autocomplete="off"/></td>
+                                    <td colspan="2" width="125">负责人联系电话</td>
+                                    <td colspan="2" width="175"><input class="myInput" id="ld_tel" name="ld_tel" lay-verify="required|number" autocomplete="off"/></td>
+                                </tr>
+                                <tr>
+                                    <td height="70">负责人所在学院</td>
+                                    <td colspan="2"  width="180"><input class="myInput" id="ld_deptment" name="ld_deptment" lay-verify="required" autocomplete="off"/></td>
+                                    <td colspan="2" width="125">负责人所在班级</td>
+                                    <td colspan="2" width="175"><input class="myInput" id="ld_class" name="ld_class" lay-verify="required" autocomplete="off"/></td>
+                                </tr>
+                                <tr>
+                                    <td height="70">指导老师姓名</td>
+                                    <td colspan="2"  width="180"><input class="myInput" id="gu_name" name="gu_name" lay-verify="required" autocomplete="off"/></td>
+                                    <td colspan="2" width="125">指导老师联系电话</td>
+                                    <td colspan="2" width="175"><input class="myInput" id="gu_tel" name="gu_tel" lay-verify="required|number" autocomplete="off"/></td>
+                                </tr>
+                                <tr>
+                                    <td height="180">社团介绍</td>
+                                    <td  colspan="6"><textarea class="myTextarea" id="ap_introduce" name="ap_introduce" lay-verify="required|ap_introduce" autocomplete="off"></textarea></td>
+                                </tr>
+                                <tr>
+                                    <td height="180">社团目标</td>
+                                    <td  colspan="6"><textarea class="myTextarea" id="ap_target" name="ap_target" lay-verify="required|ap_target" autocomplete="off"></textarea></td>
+                                </tr>
+                            </table>
+
+                            <div style="width:100%;margin: 20px auto;">
+                                <button class="layui-btn" lay-filter="add" lay-submit="" style="width:150px; height: 40px; margin-left:45%;">提交</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+
+    <script>
+        layui.use(['form', 'layer'],function() {
+            $ = layui.jquery;
+            var form = layui.form,
+                layer = layui.layer;
+
+            //自定义验证规则
+            form.verify({
+                ap_name: function(value) {
+                    if (value.length > 20) {
+                        return '社团名称不得超过20个字符啊';
+                    }
+                }
+                ,ap_introduce: function(value) {
+                    if (value.length > 200) {
+                        return '社团介绍不得超过200个字符啊';
+                    }
+                }
+                ,ap_target: function(value) {
+                    if (value.length > 200) {
+                        return '社团目标不得超过200个字符啊';
+                    }
+                }
+            });
+        })
+    </script>
+</html>
