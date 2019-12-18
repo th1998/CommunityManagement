@@ -74,7 +74,7 @@
                 <div class="layui-card">
                     <div class="layui-card-body ">
                         <h1>社团申请表</h1>
-                        <form class="layui-form">
+                        <form class="layui-form" id="apply">
 
                             <table border="1">
                                 <tr>
@@ -144,6 +144,38 @@
                     }
                 }
             });
+
+            //提交申请
+            form.on('submit(add)',function(data) {
+                console.log(data.field);
+
+                $.ajax({
+                    type: "POST",
+                    url: "/applyCommunity",
+                    data: {c_id:1, ap_status:data.field.ap_status, ap_name:data.field.ap_name,
+                            ld_name:data.field.ld_name, ld_tel:data.field.ld_tel,
+                            ld_deptment:data.field.ld_deptment, ld_class:data.field.ld_class,
+                            gu_name:data.field.gu_name,gu_tel:data.field.gu_tel,
+                            ap_introduce:data.field.ap_introduce,ap_target:data.field.ap_target},
+                    success: function(data){
+                        if(data.flag == 1){
+                            layer.alert(data.content, {icon: 6},function(index) {
+                                layer.close(index);
+                                $("#apply")[0].reset();
+                                layui.form.render();
+                            });
+                        }else {
+                            layer.alert(data.content,{icon: 5},function() {});
+                        }
+
+                    }
+                });
+
+
+
+                return false;
+            });
+
         })
     </script>
 </html>

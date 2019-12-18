@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html class="x-admin-sm">
+    <head>
+        <meta charset="UTF-8">
+        <title>欢迎页面-X-admin2.2</title>
+        <meta name="renderer" content="webkit">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <link rel="stylesheet" href="./css/font.css">
+        <link rel="stylesheet" href="./css/xadmin.css">
+        <script src="./lib/layui/layui.js" charset="utf-8"></script>
+        <script type="text/javascript" src="./js/xadmin.js"></script>
+        <!--[if lt IE 9]>
+          <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+          <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div class="x-nav">
+          <span class="layui-breadcrumb">
+            <a href="">首页</a>
+            <a>
+              <cite>社团申请列表</cite></a>
+          </span>
+          <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="刷新">
+            <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i></a>
+        </div>
+        <div class="layui-fluid">
+            <div class="layui-row layui-col-space15">
+                <div class="layui-col-md12">
+                    <div class="layui-card">
+                        <div class="layui-card-body ">
+                            <form class="layui-form layui-col-space5">
+                                <div class="layui-inline layui-show-xs-block">
+                                    <input type="text" name="username" placeholder="请输入用户名" autocomplete="off" class="layui-input"></div>
+                                <div class="layui-inline layui-show-xs-block">
+                                    <button class="layui-btn" lay-submit="" lay-filter="sreach">
+                                        <i class="layui-icon">&#xe615;</i></button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="layui-card-body " >
+
+                            <div class="layui-card-body ">
+                                <div id="tableId" lay-filter="demo">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script type="text/html" id="caozuo">
+        {{#  if(d.ap_status == 0){ }}
+        <button  class='layui-btn layui-btn-normal ' lay-event="look">查看并审批</button >
+        {{#  } else{ }}
+        <button  class='layui-btn layui-btn-normal ' lay-event="look">查看</button >
+        {{# } }}
+    </script>
+    <script type="text/html" id="ap_status">
+        {{#  if(d.ap_status == 0){ }}
+            <p style="color: red;">未批准</p>
+        {{#  } else{ }}
+            <p style="color: #00FF00;">批准</p>
+        {{# } }}
+    </script>
+    <script>
+      layui.use(['form','table'], function(){
+        var table = layui.table;
+        var form = layui.form;
+
+
+          table.render({
+              elem: '#tableId'
+              , url: '/applyCommunityList'
+              , cols: [[
+                  {checkbox: true, fixed: true}
+                  , {field: 'ap_id', width:55,title: 'ID'}
+                  , {field: 'ap_name', title: '申请社团名称'}
+                  , {field: 'ld_name', width:80,title: '负责人'}
+                  , {field: 'ld_tel', title: '负责人联系方式'}
+                  , {field: 'gu_name', width:80,title: '指导老师'}
+                  , {field: 'gu_tel',hide:true,title: '指导老师联系方式'}
+                  , {field: 'ld_deptment',hide:true,title: '负责人所在学院'}
+                  , {field: 'ld_class',hide:true,title: '负责人所在班级'}
+                  , {field: 'ap_introduce', title: '社团介绍'}
+                  , {field: 'ap_time', title: '申请时间'}
+                  , {field: 'ap_status',width:80, title: '申请状态', templet: '#ap_status'}
+                  , {title: '操作',width:120, templet: '#caozuo'}
+              ]]
+              , page: true
+              , response: {statusCode: 0}
+              , parseData: function (res) {
+                  //console.log(res);
+                  return {
+                      "code": 0,
+                      "msg": "",
+                      "count": res.applyCommunityList.total,
+                      "data": res.applyCommunityList.list
+                  }
+              }
+          });
+
+          //监听查看或者同意
+          table.on('tool(demo)', function (obj) {
+              var data = obj.data;
+              console.log(data)
+              if (obj.event === 'look') {
+                  layer.open({
+                      type: 2,
+                      area: ['800px', '500px'],
+                      content: '/apply-community-look.html',
+                      success: function(layero, index){
+                          var body = layer.getChildFrame('body', index);
+                          body.find('#ap_id').val(data.ap_id);
+                          body.find('#ap_status').val(data.ap_status);
+                          body.find('#ap_name').val(data.ap_name);
+                          body.find('#ld_name').val(data.ld_name);
+                          body.find('#ld_tel').val(data.ld_tel);
+                          body.find('#ld_deptment').val(data.ld_deptment);
+                          body.find('#ld_class').val(data.ld_class);
+                          body.find('#gu_name').val(data.gu_name);
+                          body.find('#gu_tel').val(data.gu_tel);
+                          body.find('#ap_introduce').val(data.ap_introduce);
+                          body.find('#ap_target').val(data.ap_target);
+                      },end: function (index) {
+                          table.reload('tableId', {
+                              url: '/applyCommunityList',
+                              where: {},
+                              page: {
+                                  curr: 1
+                              }
+                          });
+                      }
+                  });
+              }
+          });
+
+      });
+    </script>
+</html>
