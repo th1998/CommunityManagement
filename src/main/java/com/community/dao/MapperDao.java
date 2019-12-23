@@ -1,5 +1,6 @@
 package com.community.dao;
 
+import com.community.model.User;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -9,4 +10,6 @@ public interface MapperDao {
 
     //批量删除用户
     public int delUsers(List<Object> list);
+
+    public List<User> login(User user);
 }

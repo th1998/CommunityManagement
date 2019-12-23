@@ -4,6 +4,39 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.community.dao.MapperDao">
+    <resultMap type="com.community.model.User" id="UserAndApply">
+        <id column="id" property="id" />
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+        <result column="no" property="no"/>
+        <result column="deptment" property="deptment"/>
+        <result column="role" property="role"/>
+        <association property="apply" javaType="com.community.model.Apply">
+            <id column="ap_id" property="ap_id" />
+            <result column="c_id" property="c_id"/>
+            <result column="ap_status" property="ap_status"/>
+            <result column="ap_name" property="ap_name"/>
+            <result column="ld_name" property="ld_name"/>
+            <result column="ld_tel" property="ld_tel"/>
+            <result column="ld_deptment" property="ld_deptment"/>
+            <result column="ld_class" property="ld_class"/>
+            <result column="gu_name" property="gu_name"/>
+            <result column="gu_tel" property="gu_tel"/>
+            <result column="ap_introduce" property="ap_introduce"/>
+            <result column="ap_target" property="ap_target"/>
+            <result column="ap_time" property="ap_time"/>
+        </association>
+    </resultMap>
+
+    <select id="login" resultMap="UserAndApply" parameterType="com.community.model.User">
+        select * from c_user u
+        left join (select * from c_apply) a
+        on u.id = a.c_id
+        where username = #{username} and password = #{password}
+    </select>
+
+
+
     <!-- 批量删用户 -->
     <delete id="delUsers" parameterType="List">
         delete from c_user where id in

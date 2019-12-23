@@ -1,6 +1,7 @@
 package com.community.controller;
 
 import com.community.model.ResultMsg;
+import com.community.model.User;
 import com.community.service.MapperService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,16 @@ import java.util.List;
 public class MapperController {
     @Autowired
     private MapperService mapperService;
+
+    @ResponseBody
+    @RequestMapping("/login")
+    public List<User> login(User user){
+        User u = new User();
+        u.setUsername(user.getUsername());
+        u.setPassword(user.getPassword());
+        return mapperService.login(u);
+    }
+
 
     //批量删除用户
     @RequestMapping("/delUsers")

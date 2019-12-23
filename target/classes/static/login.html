@@ -42,15 +42,17 @@
 				}else{
 					$.ajax({
 						type: "POST",
-						url: "/Login",
+						url: "/login",
 						data: {username:$("#username").val(), password:$("#password").val()},
 						success: function(data){
 							if(data.length == 1){
+								localStorage.setItem("u_id",data[0].id);
+								localStorage.setItem("c_role",data[0].role);
+								localStorage.setItem("c_id",data[0].apply.c_id);
 								location.href="/index.html";
 							}else {
 								layer.alert("用户名或者密码不正确!");
 							}
-
 						}
 					});
 				}

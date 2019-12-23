@@ -2,6 +2,7 @@ package com.community.service;
 
 import com.community.dao.ApplyDao;
 import com.community.model.Apply;
+import com.community.model.Community;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -20,4 +21,7 @@ public class ApplyService {
 
     //批准成立社团  apply-community-look
     public int ratifyCommunity(Integer ap_id){ return applyDao.ratifyCommunity(ap_id);}
+
+    //将审批通过的社团插入到社团表  apply-community-look
+    public int insertCommunity(Community community){ return applyDao.insertCommunity(community);}
 }

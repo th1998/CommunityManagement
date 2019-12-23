@@ -1,10 +1,8 @@
 package com.community.dao;
 
 import com.community.model.Apply;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import com.community.model.Community;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -23,4 +21,9 @@ public interface ApplyDao {
     //批准成立社团  apply-community-look
     @Update("update c_apply set ap_status = 1 where ap_id = #{ap_id}")
     public int ratifyCommunity(Integer ap_id);
+
+    //将审批通过的社团插入到社团表  apply-community-look
+    @Insert("insert into c_community(c_id,co_name,co_ldname,co_ldtel,co_guname,co_introduce,co_creattime) " +
+            "values(#{c_id},#{co_name},#{co_ldname},#{co_ldtel},#{co_guname},#{co_introduce},#{co_creattime})")
+    public int insertCommunity(Community community);
 }

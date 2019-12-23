@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html class="x-admin-sm">
+  
+  <head>
+    <meta charset="UTF-8">
+    <title>欢迎页面-X-admin2.2</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="stylesheet" href="./css/font.css">
+    <link rel="stylesheet" href="./css/xadmin.css">
+    <script src="./js/jquery.min.js"></script>
+    <script type="text/javascript" src="./lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="./js/xadmin.js"></script>
+
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+      <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+      <style>
+          .leftContent {
+              width: 400px;
+              height: 400px;
+              float: left;
+          }
+          .rightBill{
+              width: 500px;
+              height: 400px;
+              float: left;
+          }
+          .clear{
+              clear: both;
+          }
+      </style>
+
+  </head>
+  
+  <body>
+    <div class="x-nav">
+      <span class="layui-breadcrumb">
+        <a href="">首页</a>
+        <a>
+          <cite>社团海报</cite></a>
+      </span>
+      <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="刷新">
+        <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i></a>
+    </div>
+    <div class="layui-fluid">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-body ">
+                    <div class="leftContent">
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label" >社团名称:</label>
+                            <div class="layui-input-block"   >
+                                <p id="co_name" style="height: 45px; line-height: 35px;"></p>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label" >负责人:</label>
+                            <div class="layui-input-block"   >
+                                <p id="co_ldname" style="height: 45px; line-height: 35px;"></p>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label" >指导老师:</label>
+                            <div class="layui-input-block"   >
+                                <p id="co_guname" style="height: 45px; line-height: 35px;"></p>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label" >老师联系方式:</label>
+                            <div class="layui-input-block"   >
+                                <p id="co_gutel" style="height: 45px; line-height: 35px;"></p>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label" >社团名称:</label>
+                            <div class="layui-input-block"   >
+                                <p id="co_introduce" style="height: 45px; line-height: 35px;"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <form class="layui-form" enctype="multipart/form-data">
+                        <input id="co_id" style="display: none"/>
+                        <div class="rightBill">
+                            <div class="layui-form-item">
+                                <div class="layui-upload">
+                                    <label class="layui-form-label">社团海报</label>
+                                    <button type="button" class="layui-btn" id="up">选择</button>
+                                    <input type="file" class="layui-btn" name="file" id="file" onchange="uploads(this.files)" style="display:none;">
+                                </div>
+                            </div>
+                            <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;margin-left:50px;">
+                                预览图：
+                                <div class="layui-upload-list" id="demo2">
+                                    <img class="layui-upload-img" id="demo1" width="400">
+                                </div>
+                            </blockquote>
+                            <div class="layui-form-item">
+                                <div class="layui-input-block">
+                                    <button type="submit" class="layui-btn" lay-submit lay-filter="entry">立即提交</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+    </div> 
+    <script>
+        layui.use(['form', 'layer','upload'],function() {
+            var form = layui.form;
+            var layer = layui.layer;
+            var upload = layui.upload;
+
+            var u_id = localStorage.getItem("u_id");
+            $.ajax({
+                type: "POST",
+                url: "/getOneCommunity",
+                data: {u_id: u_id},
+                success: function (data) {
+                    $("#co_id").val(data[0].co_id);
+                    $("#co_name").html(data[0].co_name);
+                    $("#co_ldname").html(data[0].co_name);
+                    $("#co_guname").html(data[0].co_guname);
+                    $("#co_gutel").html(data[0].co_gutel);
+                    $("#co_introduce").html(data[0].co_introduce);
+                }
+            });
+
+
+            $("#up").click(function () {
+                $("#file").click();
+            });
+            uploads = function (f) {
+                var str = "";
+                for (var i = 0; i < f.length; i++) {
+                    var reader = new FileReader();
+                    reader.readAsDataURL(f[i]);
+                    reader.onload = function (e) {
+                        $('#demo1').attr('src', e.target.result);
+                    }
+                }
+
+            }
+
+            form.on('submit(entry)',function(data) {
+                var co_id = $("#co_id").val();
+                var formData = new FormData();
+                //⑤获取传入元素的val
+                var name = $("#file").val();
+                //⑥获取files
+                var files = $("#file")[0].files[0];
+                //⑦将name 和 files 添加到formData中，键值对形式
+                formData.append("file", files);
+                formData.append("name", name);
+                formData.append("co_id", co_id);
+                $.ajax({
+                    type:"POST",
+                    url:"/uploadBill",
+                    data:formData,
+                    processData: false,
+                    contentType: false,
+                    success:function (res) {
+                        if(res.flag == 1){
+                            layer.msg(res.content, {icon: 1,time: 2000 }, function(){});
+                        }else{
+                            layer.msg(res.content, {icon: 2,time: 2000 }, function(){});
+                        }
+                    }
+                });
+                return false;
+
+
+            })
+
+
+
+            //普通图片上传
+            /* var uploadInst = upload.render({
+                 elem: '#up'
+                 , url: ''
+                 , before: function (obj) {
+                     //预读本地文件示例，不支持ie8
+                     obj.preview(function (index, file, result) {
+                         $('#demo1').attr('src', result); //图片链接（base64）
+                     });
+                 },done: function(res){
+
+                 }
+             })*/
+
+
+
+        })
+    </script>
+  </body>
+
+</html>

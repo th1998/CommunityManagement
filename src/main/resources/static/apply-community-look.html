@@ -99,6 +99,7 @@
                                     <td  colspan="6"><textarea class="myTextarea" readonly="readonly" id="ap_target" name="ap_target" lay-verify="required|ap_target" autocomplete="off"></textarea></td>
                                 </tr>
                                 <input id="ap_id" name="ap_id" style="display: none;">
+                                <input id="c_id" name="c_id" style="display: none;">
                                 <input id="ap_status" name="ap_status" style="display: none;">
                             </table>
 
@@ -119,17 +120,26 @@
             var form = layui.form,
                 layer = layui.layer;
 
+            var co_name = $("#ap_name").val();
+            var c_id = $("#c_id").val();
+            var co_ldname = $("#ld_name").val();
+            var co_ldtel = $("#ld_tel").val();
+            var co_guname = $("#gu_name").val();
+            var co_gutel = $("#gu_tel").val();
+            var co_introduce = $("#ap_introduce").val();
+            console.log(co_name)
             var apStatus = $("#ap_status").val();
             if(apStatus == 1){
                 $("#pz").hide();
             }
 
             form.on('submit(add)',function(data) {
-                //console.log(data.field);
                 $.ajax({
                     type: "POST",
                     url: "/ratifyCommunity",
-                    data: {ap_id:data.field.ap_id},
+                    data: {ap_id:data.field.ap_id,c_id:c_id,co_name:co_name,
+                        co_ldname:co_ldname,co_ldtel:co_ldtel,
+                        co_guname:co_guname,co_gutel:co_gutel,co_introduce:co_introduce},
                     success: function(data){
                         if(data.flag == 1){
                             layer.alert(data.content, {icon: 6},function(index) {

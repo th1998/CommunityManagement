@@ -2,7 +2,7 @@
 <html class="x-admin-sm">
     <head>
         <meta charset="UTF-8">
-        <title>欢迎页面-X-admin2.2</title>
+        <title>社团申请列表</title>
         <meta name="renderer" content="webkit">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <link rel="stylesheet" href="./css/font.css">
@@ -78,6 +78,7 @@
               , cols: [[
                   {checkbox: true, fixed: true}
                   , {field: 'ap_id', width:55,title: 'ID'}
+                  , {field: 'c_id',hide:true, title: '用户ID'}
                   , {field: 'ap_name', title: '申请社团名称'}
                   , {field: 'ld_name', width:80,title: '负责人'}
                   , {field: 'ld_tel', title: '负责人联系方式'}
@@ -106,7 +107,7 @@
           //监听查看或者同意
           table.on('tool(demo)', function (obj) {
               var data = obj.data;
-              console.log(data)
+              //console.log(data)
               if (obj.event === 'look') {
                   layer.open({
                       type: 2,
@@ -115,6 +116,7 @@
                       success: function(layero, index){
                           var body = layer.getChildFrame('body', index);
                           body.find('#ap_id').val(data.ap_id);
+                          body.find('#c_id').val(data.c_id);
                           body.find('#ap_status').val(data.ap_status);
                           body.find('#ap_name').val(data.ap_name);
                           body.find('#ld_name').val(data.ld_name);

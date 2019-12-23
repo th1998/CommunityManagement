@@ -1,15 +1,18 @@
 package com.community.controller;
 
 import com.community.model.Apply;
+import com.community.model.Community;
 import com.community.model.ResultMsg;
 import com.community.service.ApplyService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -64,9 +67,22 @@ public class ApplyController {
     //批准成立社团  apply-community-look
     @RequestMapping("/ratifyCommunity")
     @ResponseBody
-    public ResultMsg ratifyCommunity(Integer ap_id){
+    public ResultMsg ratifyCommunity(Integer ap_id,Integer c_id,String co_name,String co_ldname,String co_ldtel,String co_guname,String co_gutel,String co_introduce){
         int i = applyService.ratifyCommunity(ap_id);
+
         if(i>0){
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String  co_creattime= df.format(new Date());
+            Community co = new Community();
+            co.setC_id(c_id);
+            co.setCo_name(co_name);
+            co.setCo_ldname(co_ldname);
+            co.setCo_ldtel(co_ldtel);
+            co.setCo_guname(co_guname);
+            co.setCo_gutel(co_gutel);
+            co.setCo_introduce(co_introduce);
+            co.setCo_creattime(co_creattime);
+            int j = applyService.insertCommunity(co);
             return new ResultMsg(1,"审批完成！");
         }else {
             return new ResultMsg(0,"审批失败！");

@@ -7,6 +7,7 @@ public class User {
     private String no;
     private String deptment;
     private Integer role;
+    private Apply apply;
 
     public Integer getId() {
         return id;
@@ -54,5 +55,13 @@ public class User {
 
     public void setRole(Integer role) {
         this.role = role;
+    }
+
+    public Apply getApply() {
+        return apply;
+    }
+
+    public void setApply(Apply apply) {
+        this.apply = apply;
     }
 }
