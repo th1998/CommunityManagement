@@ -21,4 +21,10 @@ public class CommunityService {
 
     //根据负责人查询自己的社团 community-bill
     public List<Community> getOneCommunity(Integer u_id){ return communityDao.getOneCommunity(u_id);}
+
+    //上传社团海报 community-bill
+    public int uploadBill(String co_bill,Integer co_id){ return communityDao.uploadBill(co_bill, co_id);}
+
+    //显示所有社团 show-community
+    public List<Community> showCommunity(){ return communityDao.showCommunity();}
 }

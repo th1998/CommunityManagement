@@ -49,7 +49,8 @@ public class CommunityController {
     @RequestMapping("/uploadBill")
     @ResponseBody
     public ResultMsg uploadBill(@RequestParam(value = "file",required = false) MultipartFile file, HttpServletRequest request) throws IOException, ParseException {
-        String co_id = request.getParameter("co_id");
+        String coid = request.getParameter("co_id");
+        Integer co_id = Integer.valueOf(coid);
         System.out.println(co_id);
 
         MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
@@ -103,9 +104,21 @@ public class CommunityController {
                 file2.transferTo(ff);
                 //图片url
                 String url = "/upload/"+newFileName;
-                System.out.println(path+File.separator+filename);
+                //System.out.println(path+File.separator+filename);
+
+                int i = communityService.uploadBill(url,co_id);
+                if(i>0){
+                    return new ResultMsg(1,"海报上传成功");
+                }
             }
 
-        return new ResultMsg(1,"成功");
+            return new ResultMsg(0,"海报上传失败");
+    }
+
+    //显示所有社团 show-community
+    @RequestMapping("/showCommunity")
+    @ResponseBody
+    public List<Community> showCommunity(){
+        return communityService.showCommunity();
     }
 }
