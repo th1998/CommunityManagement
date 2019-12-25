@@ -3,7 +3,7 @@
     
     <head>
         <meta charset="UTF-8">
-        <title>社团活动申请</title>
+        <title>活动申请查看</title>
         <meta name="renderer" content="webkit">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <link rel="stylesheet" href="./css/font.css">
@@ -116,9 +116,10 @@
                                 <td  colspan="6"><textarea class="myTextarea" id="a_expect" name="a_expect" lay-verify="required|a_sense" autocomplete="off"></textarea></td>
                             </tr>
                         </table>
-                        <input id="u_id" name="u_id" style="display: none">
+                        <input id="u_id" name="u_id" style="display: none" />
+                        <input id="a_status" name="a_status"/>
                         <div style="width:100%;margin: 20px auto;">
-                            <button class="layui-btn" lay-filter="add" lay-submit="" style="width:150px; height: 40px; margin-left:45%;">提交</button>
+                            <button class="layui-btn" id="pz" lay-filter="add" lay-submit="" style="width:150px; height: 40px; margin-left:45%;">提交</button>
                         </div>
 
                     </form>
@@ -128,47 +129,24 @@
     </div>
     </body>
     <script>
-        layui.use(['form', 'layer','laydate'],function() {
+        layui.use(['form', 'layer'],function() {
             $ = layui.jquery;
             var form = layui.form,
-                laydate = layui.laydate,
                 layer = layui.layer;
 
-            laydate.render({
-                elem: '#a_time' //指定元素
-                ,type: 'datetime'
-            });
 
-            //自定义验证规则
-            form.verify({
-                c_name: function(value) {
-                    if (value.length > 20) {
-                        return '社团名称不得超过20个字符啊';
-                    }
-                }
-                ,a_plan: function(value) {
-                    if (value.length > 300) {
-                        return '活动计划不得超过300个字符啊';
-                    }else if(value.length < 50){
-                        return '活动计划不能少于50个字符啊';
-                    }
-                }
-                ,a_sense: function(value) {
-                    if (value.length > 200) {
-                        return '活动意义不得超过200个字符啊';
-                    }else if(value.length < 50){
-                        return '活动意义不能少于50个字符啊';
-                    }
-                }
-            });
-
+            var aStatus = $("#a_status").val();
+            console.log(aStatus);
+            if (aStatus != 0) {
+                $("#pz").hide();
+            }
 
             //提交申请
-            form.on('submit(add)',function(data) {
+            form.on('submit(add)', function (data) {
                 //console.log(data.field);
                 var u_id = localStorage.getItem("u_id");
-                var d =data.field;
-               $.ajax({
+                var d = data.field;
+                /*$.ajax({
                     type: "POST",
                     url: "/applyActivity",
                     data: {u_id:u_id,co_name:d.co_name,a_name:d.a_name,a_ldname:d.a_ldname,
@@ -189,8 +167,9 @@
                 });
 
                return false;
-            });
-            
+            });*/
+
+            })
         })
     </script>
 </html>

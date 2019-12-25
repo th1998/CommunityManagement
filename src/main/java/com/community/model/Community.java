@@ -2,7 +2,7 @@ package com.community.model;
 
 public class Community {
     private Integer co_id;
-    private Integer c_id;
+    private Integer u_id;
     private String co_name;
     private String co_ldname;
     private String co_ldtel;
@@ -20,12 +20,12 @@ public class Community {
         this.co_id = co_id;
     }
 
-    public Integer getC_id() {
-        return c_id;
+    public Integer getU_id() {
+        return u_id;
     }
 
-    public void setC_id(Integer c_id) {
-        this.c_id = c_id;
+    public void setU_id(Integer u_id) {
+        this.u_id = u_id;
     }
 
     public String getCo_name() {

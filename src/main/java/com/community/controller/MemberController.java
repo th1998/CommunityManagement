@@ -3,13 +3,15 @@ package com.community.controller;
 import com.community.model.Member;
 import com.community.model.ResultMsg;
 import com.community.service.MemberService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.*;
 
 @Controller
 public class MemberController {
@@ -17,12 +19,7 @@ public class MemberController {
     private MemberService memberService;
 
 
-    @RequestMapping("/a")
-    @ResponseBody
-    public String a(Member member){
-        System.out.println("aaaa");
-        return "aa";
-    }
+
     //申请加入社团   member-add
     @RequestMapping("/applyJoinCommunity")
     @ResponseBody
@@ -44,5 +41,40 @@ public class MemberController {
             return new ResultMsg(1,"申请成功，等待审批！");
         }
         return new ResultMsg(1,"申请失败，请重试！");
+    }
+
+    //查询申请入社列表  apply-member-list
+    @RequestMapping("/getMemberList")
+    @ResponseBody
+    public Map getMemberList(String page, String limit){
+        PageHelper.startPage(Integer.valueOf(page).intValue(), Integer.valueOf(limit).intValue());
+        List<Member> list = memberService.getMemberList(page,limit);
+        PageInfo pageInfo = new PageInfo(list);
+        Map<String,Object> map = new HashMap<>();
+        map.put("getMemberList",pageInfo);
+        return map;
+    }
+
+
+    //审批加入社团处理同意
+    @RequestMapping("/agreeJoin")
+    @ResponseBody
+    public ResultMsg agreeJoin(Integer m_id){
+        int i = memberService.agreeJoin(m_id);
+        if(i>0){
+            return new ResultMsg(1,"审批成功！");
+        }
+        return new ResultMsg(0,"审批失败！");
+    }
+
+    //审批加入社团处理不同意
+    @RequestMapping("/disagreeJoin")
+    @ResponseBody
+    public ResultMsg disagreeJoin(Integer m_id){
+        int i = memberService.disagreeJoin(m_id);
+        if(i>0){
+            return new ResultMsg(1,"审批成功！");
+        }
+        return new ResultMsg(0,"审批失败！");
     }
 }

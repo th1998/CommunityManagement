@@ -14,7 +14,7 @@ public interface CommunityDao {
     public List<Community> getCommunity();
 
     //根据负责人查询自己的社团 community-bill
-    @Select("select * from c_community where c_id = #{u_id}")
+    @Select("select * from c_community where u_id = #{u_id}")
     public List<Community> getOneCommunity(Integer u_id);
 
     //上传社团海报 community-bill

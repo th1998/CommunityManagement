@@ -31,7 +31,7 @@ public class ApplyController {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String  ap_time= df.format(new Date());
         Apply ap = new Apply();
-        ap.setC_id(apply.getC_id());
+        ap.setU_id(apply.getU_id());
         ap.setAp_status(0);
         ap.setAp_name(apply.getAp_name());
         ap.setLd_name(apply.getLd_name());
@@ -67,14 +67,14 @@ public class ApplyController {
     //批准成立社团  apply-community-look
     @RequestMapping("/ratifyCommunity")
     @ResponseBody
-    public ResultMsg ratifyCommunity(Integer ap_id,Integer c_id,String co_name,String co_ldname,String co_ldtel,String co_guname,String co_gutel,String co_introduce){
+    public ResultMsg ratifyCommunity(Integer ap_id,Integer u_id,String co_name,String co_ldname,String co_ldtel,String co_guname,String co_gutel,String co_introduce){
         int i = applyService.ratifyCommunity(ap_id);
 
         if(i>0){
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String  co_creattime= df.format(new Date());
             Community co = new Community();
-            co.setC_id(c_id);
+            co.setU_id(u_id);
             co.setCo_name(co_name);
             co.setCo_ldname(co_ldname);
             co.setCo_ldtel(co_ldtel);

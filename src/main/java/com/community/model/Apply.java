@@ -2,7 +2,7 @@ package com.community.model;
 
 public class Apply {
     private Integer ap_id;
-    private Integer c_id;
+    private Integer u_id;
     private Integer ap_status;
     private String ap_name;
     private String ld_name;
@@ -23,12 +23,12 @@ public class Apply {
         this.ap_id = ap_id;
     }
 
-    public Integer getC_id() {
-        return c_id;
+    public Integer getU_id() {
+        return u_id;
     }
 
-    public void setC_id(Integer c_id) {
-        this.c_id = c_id;
+    public void setU_id(Integer u_id) {
+        this.u_id = u_id;
     }
 
     public Integer getAp_status() {

@@ -13,7 +13,7 @@
         <result column="role" property="role"/>
         <association property="apply" javaType="com.community.model.Apply">
             <id column="ap_id" property="ap_id" />
-            <result column="c_id" property="c_id"/>
+            <result column="u_id" property="u_id"/>
             <result column="ap_status" property="ap_status"/>
             <result column="ap_name" property="ap_name"/>
             <result column="ld_name" property="ld_name"/>
@@ -31,7 +31,7 @@
     <select id="login" resultMap="UserAndApply" parameterType="com.community.model.User">
         select * from c_user u
         left join (select * from c_apply) a
-        on u.id = a.c_id
+        on u.id = a.u_id
         where username = #{username} and password = #{password}
     </select>
 
