@@ -59,6 +59,7 @@
     <button  class='layui-btn layui-btn-normal ' lay-event="look">查看</button >
     {{# } }}
 </script>
+
 <script type="text/html" id="a_status">
     {{#  if(d.a_status == 0){ }}
     <p style="color: orange;">未审批</p>
@@ -84,6 +85,7 @@
                 , {field: 'a_id', width:55,title: 'ID'}
                 , {field: 'u_id',hide:true, title: '用户ID'}
                 , {field: 'co_name', title: '社团名称'}
+                , {field: 'a_name', title: '社团名称'}
                 , {field: 'a_ldname', width:100,title: '活动负责人'}
                 , {field: 'a_ldtel',hide:true, width:120,title: '联系方式'}
                 , {field: 'a_time',title: '时间'}
@@ -118,9 +120,15 @@
                     content: '/apply-activity-look.html',
                     success: function(layero, index){
                         var body = layer.getChildFrame('body', index);
+                        body.find('#a_id').val(data.a_id);
                         body.find('#co_name').val(data.co_name);
                         body.find('#a_name').val(data.a_name);
-                        body.find('#a_status').val(data.a_status);
+                        
+                        if(data.a_status != '0'){
+                            body.find('#cz').css("display","none");
+                        }else {
+                            body.find('#cz').css("display","block");
+                        }
                         body.find('#a_ldname').val(data.a_ldname);
                         body.find('#a_ldtel').val(data.a_ldtel);
                         body.find('#a_time').val(data.a_time);

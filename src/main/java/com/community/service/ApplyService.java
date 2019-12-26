@@ -22,6 +22,12 @@ public class ApplyService {
     //批准成立社团  apply-community-look
     public int ratifyCommunity(Integer ap_id){ return applyDao.ratifyCommunity(ap_id);}
 
+    //批准成立社团  apply-community-look
+    public int disagreeCommunity(Integer ap_id){ return  applyDao.disagreeCommunity(ap_id);}
+
     //将审批通过的社团插入到社团表  apply-community-look
     public int insertCommunity(Community community){ return applyDao.insertCommunity(community);}
+
+    //社团申请记录
+    public List<Apply> communityHistory(Integer u_id){ return applyDao.communityHistory(u_id);}
 }

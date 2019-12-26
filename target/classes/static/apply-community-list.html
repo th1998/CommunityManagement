@@ -61,9 +61,11 @@
     </script>
     <script type="text/html" id="ap_status">
         {{#  if(d.ap_status == 0){ }}
-            <p style="color: red;">未批准</p>
-        {{#  } else{ }}
+            <p style="color: orange;">未审批</p>
+        {{#  } else if(d.ap_status == 1){ }}
             <p style="color: #00FF00;">批准</p>
+        {{# }else{ }}
+            <p style="color: red;">未批准</p>
         {{# } }}
     </script>
     <script>
@@ -117,7 +119,11 @@
                           var body = layer.getChildFrame('body', index);
                           body.find('#ap_id').val(data.ap_id);
                           body.find('#c_id').val(data.c_id);
-                          body.find('#ap_status').val(data.ap_status);
+                          if(data.ap_status != '0'){
+                              body.find('#pz').css("display","none");
+                          }else {
+                              body.find('#pz').css("display","block");
+                          }
                           body.find('#ap_name').val(data.ap_name);
                           body.find('#ld_name').val(data.ld_name);
                           body.find('#ld_tel').val(data.ld_tel);

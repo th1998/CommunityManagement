@@ -89,4 +89,24 @@ public class ApplyController {
         }
     }
 
+    //批准成立社团  apply-community-look
+    @RequestMapping("/disagreeCommunity")
+    @ResponseBody
+    public ResultMsg disagreeCommunity(Integer ap_id){
+        int i = applyService.disagreeCommunity(ap_id);
+        if(i>0){
+            return new ResultMsg(1,"审批成功！");
+        }
+        return new ResultMsg(0,"审批失败！");
+    }
+
+    //社团申请记录
+    @RequestMapping("/communityHistory")
+    @ResponseBody
+    public Map communityHistory(Integer u_id){
+        List<Apply> list = applyService.communityHistory(u_id);
+        Map<String,Object> map = new HashMap<>();
+        map.put("communityHistory",list);
+        return map;
+    }
 }

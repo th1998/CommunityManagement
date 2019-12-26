@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="./css/font.css">
         <link rel="stylesheet" href="./css/xadmin.css">
         <!-- <link rel="stylesheet" href="./css/theme5.css"> -->
+        <script type="text/javascript" src="./js/jquery.min.js"></script>
         <script src="./lib/layui/layui.js" charset="utf-8"></script>
         <script type="text/javascript" src="./js/xadmin.js"></script>
         <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
@@ -20,6 +21,7 @@
             // 是否开启刷新记忆tab功能
             // var is_remember = false;
         </script>
+
     </head>
     <body class="index">
         <!-- 顶部开始 -->
@@ -55,10 +57,11 @@
         <div class="left-nav">
             <div id="side-nav">
                 <ul id="nav">
-                    <li>
+                    <!--用户管理-->
+                    <li id="userLi" style="display: none">
                         <a href="javascript:;">
-                            <i class="iconfont left-nav-li" lay-tips="会员管理">&#xe6b8;</i>
-                            <cite>会员管理</cite>
+                            <i class="iconfont left-nav-li" lay-tips="用户管理">&#xe6b8;</i>
+                            <cite>用户管理</cite>
                             <i class="iconfont nav_right">&#xe697;</i></a>
                         <ul class="sub-menu">
                             <li>
@@ -71,63 +74,74 @@
                                     <i class="iconfont">&#xe6a7;</i>
                                     <cite>用户列表</cite></a>
                             </li>
-                            <li>
-                                <a href="javascript:;">
-                                    <i class="iconfont">&#xe70b;</i>
-                                    <cite>会员管理</cite>
-                                    <i class="iconfont nav_right">&#xe697;</i></a>
-                                <ul class="sub-menu">
-                                    <li>
-                                        <a onclick="xadmin.add_tab('会员删除','member-del.html')">
-                                            <i class="iconfont">&#xe6a7;</i>
-                                            <cite>会员删除</cite></a>
-                                    </li>
-                                    <li>
-                                        <a onclick="xadmin.add_tab('等级管理','member-list1.html')">
-                                            <i class="iconfont">&#xe6a7;</i>
-                                            <cite>等级管理</cite></a>
-                                    </li>
-                                </ul>
-                            </li>
                         </ul>
                     </li>
-                    <li>
+
+
+                    <!--申请记录-->
+                    <li id="applyHistoryLi" style="display: none">
                         <a href="javascript:;">
-                            <i class="iconfont left-nav-li" lay-tips="学生功能">&#xe723;</i>
-                            <cite>学生功能</cite>
+                            <i class="iconfont left-nav-li" lay-tips="申请记录">&#xe6b8;</i>
+                            <cite>申请记录</cite>
                             <i class="iconfont nav_right">&#xe697;</i></a>
                         <ul class="sub-menu">
                             <li>
-                                <a onclick="xadmin.add_tab('社团创立申请','apply-community.html')">
+                                <a onclick="xadmin.add_tab('社团申请记录','community-history.html')">
                                     <i class="iconfont">&#xe6a7;</i>
-                                    <cite>社团创立申请</cite></a>
+                                    <cite>社团申请记录</cite></a>
                             </li>
+                            <li>
+                                <a onclick="xadmin.add_tab('活动申请记录','activity-history.html',true)">
+                                    <i class="iconfont">&#xe6a7;</i>
+                                    <cite>活动申请记录</cite></a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!--社团事务-->
+                    <li id="communityWorkLi" style="display: none">
+                        <a href="javascript:;">
+                            <i class="iconfont left-nav-li" lay-tips="社团事务">&#xe6b8;</i>
+                            <cite>社团事务</cite>
+                            <i class="iconfont nav_right">&#xe697;</i></a>
+                        <ul class="sub-menu">
                             <li>
                                 <a onclick="xadmin.add_tab('社团活动申请','apply-activity.html')">
                                     <i class="iconfont">&#xe6a7;</i>
                                     <cite>社团活动申请</cite></a>
                             </li>
                             <li>
-                                <a onclick="xadmin.add_tab('成员申请','apply-member-list.html')">
+                                <a onclick="xadmin.add_tab('成员申请列表','apply-member-list.html')">
                                     <i class="iconfont">&#xe6a7;</i>
-                                    <cite>成员申请</cite></a>
+                                    <cite>成员申请列表</cite></a>
                             </li>
                             <li>
                                 <a onclick="xadmin.add_tab('社团海报录入','community-bill.html')">
                                     <i class="iconfont">&#xe6a7;</i>
                                     <cite>社团海报录入</cite></a>
                             </li>
-                            <li>
-                                <a onclick="xadmin.add_tab('查看社团','show-community.html')">
-                                    <i class="iconfont">&#xe6a7;</i>
-                                    <cite>查看社团</cite></a>
-                            </li>
                         </ul>
                     </li>
-                    <li>
+
+                    <!--学生功能-->
+                    <li id="applyCommunity" style="display: none">
+                        <a onclick="xadmin.add_tab('社团创立申请','apply-community.html')">
+                            <i class="iconfont left-nav-li" lay-tips="学生功能">&#xe723;</i>
+                            <cite>社团创立申请</cite>
+                        </a>
+                    </li>
+                    <li id="showCommunity" style="display: none">
+                        <a onclick="xadmin.add_tab('查看社团','show-community.html')">
+                            <i class="iconfont left-nav-li" lay-tips="学生功能">&#xe723;</i>
+                            <cite>查看社团</cite>
+                        </a>
+                    </li>
+
+                    <!--社团事务处理-->
+                    <li id="adminLi" style="display: none">
                         <a href="javascript:;">
-                            <i class="iconfont left-nav-li" lay-tips="管理员功能">&#xe723;</i>
-                            <cite>管理员功能</cite>
+                            <i class="iconfont left-nav-li" lay-tips="社团事务处理">&#xe723;</i>
+                            <cite>社团事务处理</cite>
                             <i class="iconfont nav_right">&#xe697;</i></a>
                         <ul class="sub-menu">
                             <li>
@@ -185,5 +199,22 @@
 
 
     </body>
+    <script>
+        var role = localStorage.getItem("c_role")
+        var co_id = localStorage.getItem("co_id")
+        console.log(role)
+        if(role == 10){
+            $("#userLi").attr("style","display:block")
+            $("#adminLi").attr("style","display:block")
+        }
+        if(role == 8){
+            $("#applyCommunity").attr("style","display:block")
+            $("#showCommunity").attr("style","display:block")
+        }
+        if(co_id != -1){
+            $("#communityWorkLi").attr("style","display:block")
+            $("#applyHistoryLi").attr("style","display:block")
+        }
+    </script>
 
 </html>

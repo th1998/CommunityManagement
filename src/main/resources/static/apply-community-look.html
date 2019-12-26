@@ -100,11 +100,13 @@
                                 </tr>
                                 <input id="ap_id" name="ap_id" style="display: none;">
                                 <input id="c_id" name="c_id" style="display: none;">
-                                <input id="ap_status" name="ap_status" style="display: none;">
+
                             </table>
 
-                            <div style="width:100%;margin: 20px auto;">
-                                <button class="layui-btn" id="pz" lay-filter="add" lay-submit="" style="width:150px; height: 40px; margin-left:45%;">批准</button>
+                            <div style="width:100%;margin: 20px auto;" id="pz">
+                                <button class="layui-btn"  lay-filter="add" lay-submit="" style="width:150px; height: 40px; float: left;margin-left:30%;">同意</button>
+                                <button class="layui-btn"  lay-filter="disagree" lay-submit="" style="width:150px; height: 40px;float: left;">不同意</button>
+                                <div style="clear: both"></div>
                             </div>
 
                         </form>
@@ -127,12 +129,8 @@
             var co_guname = $("#gu_name").val();
             var co_gutel = $("#gu_tel").val();
             var co_introduce = $("#ap_introduce").val();
-            console.log(co_name)
-            var apStatus = $("#ap_status").val();
-            if(apStatus == 1){
-                $("#pz").hide();
-            }
 
+            //同意
             form.on('submit(add)',function(data) {
                 $.ajax({
                     type: "POST",
@@ -140,6 +138,27 @@
                     data: {ap_id:data.field.ap_id,c_id:c_id,co_name:co_name,
                         co_ldname:co_ldname,co_ldtel:co_ldtel,
                         co_guname:co_guname,co_gutel:co_gutel,co_introduce:co_introduce},
+                    success: function(data){
+                        if(data.flag == 1){
+                            layer.alert(data.content, {icon: 6},function(index) {
+                                var index = parent.layer.getFrameIndex(window.name);
+                                parent.layer.close(index)
+                            });
+                        }else {
+                            layer.alert(data.content,{icon: 5},function(index) {layer.close(index);});
+                        }
+
+                    }
+                });
+                return false;
+            })
+
+            //不同意
+            form.on('submit(disagree)',function(data) {
+                $.ajax({
+                    type: "POST",
+                    url: "/disagreeCommunity",
+                    data: data.field,
                     success: function(data){
                         if(data.flag == 1){
                             layer.alert(data.content, {icon: 6},function(index) {

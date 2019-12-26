@@ -17,4 +17,19 @@ public class ActivityService {
 
     //查询活动申请列表
     public List<Activity> getApplyActivity(String page, String limit){ return activityDao.getApplyActivity();}
+
+    //同意活动
+    public int agreeActivity(Integer a_id){ return activityDao.agreeActivity(a_id);}
+
+    //不同意活动
+    public int disagreeActivity(Integer a_id){ return activityDao.disagreeActivity(a_id);}
+
+    //查询活动
+    public List<Activity> getActivityList(String page, String limit){ return  activityDao.getActivityList();}
+
+    //撤销活动
+    public int undoActivity(Integer a_id){ return activityDao.undoActivity(a_id);}
+
+    //活动记录
+    public List<Activity> activityHistory(Integer u_id){ return activityDao.activityHistory(u_id);}
 }

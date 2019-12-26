@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html class="x-admin-sm">
+<head>
+    <meta charset="UTF-8">
+    <title>活动申请记录</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="stylesheet" href="./css/font.css">
+    <link rel="stylesheet" href="./css/xadmin.css">
+    <script src="./lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="./js/xadmin.js"></script>
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="x-nav">
+          <span class="layui-breadcrumb">
+            <a href="">首页</a>
+            <a>
+              <cite>活动申请记录</cite></a>
+          </span>
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="刷新">
+        <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i></a>
+</div>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-body ">
+                </div>
+
+                <div class="layui-card-body " >
+
+                    <div class="layui-card-body ">
+                        <div id="tableId" lay-filter="demo">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/html" id="ap_status">
+    {{#  if(d.a_status == 0){ }}
+    <p style="color: orange;">审批中···</p>
+    {{#  } else if(d.a_status == 1){ }}
+    <p style="color: #00FF00;">同意</p>
+    {{#  } else if(d.a_status == 2){ }}
+    <p style="color: red;">不同意</p>
+    {{# }else{ }}
+    <p style="color: #FF00FF;">撤销</p>
+    {{# } }}
+</script>
+<script>
+    layui.use(['form','table'], function(){
+        var table = layui.table;
+        var form = layui.form;
+
+        var u_id=localStorage.getItem("u_id");
+        table.render({
+            elem: '#tableId'
+            , url: '/activityHistory'
+            ,where:{u_id:u_id}
+            , cols: [[
+                {field: 'a_id', width:55,title: 'ID'}
+                , {field: 'co_name',hide:true,title: '社团名称'}
+                , {field: 'a_name', title: '活动名称'}
+                , {field: 'a_time',title: '活动时间'}
+                , {field: 'a_place',title: '活动地点'}
+                , {field: 'a_plan',title: '活动计划'}
+                , {field: 'a_status',title: '状态',templet:'#ap_status'}
+            ]]
+            , response: {statusCode: 0}
+            , parseData: function (res) {
+                console.log(res);
+                return {
+                    "code": 0,
+                    "msg": "",
+                    "count": res.activityHistory.length,
+                    "data": res.activityHistory
+                }
+            }
+        });
+
+
+    });
+</script>
+</html>

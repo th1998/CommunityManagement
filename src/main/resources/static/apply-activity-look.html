@@ -85,41 +85,42 @@
                         <table border="1">
                             <tr>
                                 <td width="140" height="70;" align="center">社团名称</td>
-                                <td width="470" colspan="6" ><input class="layui-input myInput" id="co_name" name="co_name" lay-verify="required|c_name" autocomplete="off"/></td>
+                                <td width="470" colspan="6" ><input class="layui-input myInput" readonly="readonly" id="co_name" name="co_name" lay-verify="required|c_name" autocomplete="off"/></td>
                             </tr>
                             <tr>
                                 <td width="140" height="70;" align="center">活动名称</td>
-                                <td width="470" colspan="6" ><input class="layui-input myInput" id="a_name" name="a_name" lay-verify="required|a_name" autocomplete="off"/></td>
+                                <td width="470" colspan="6" ><input class="layui-input myInput" readonly="readonly" id="a_name" name="a_name" lay-verify="required|a_name" autocomplete="off"/></td>
                             </tr>
                             <tr>
                                 <td height="70">活动负责人</td>
-                                <td colspan="2"  width="180"><input class="myInput" id="a_ldname" name="a_ldname" lay-verify="required" autocomplete="off"/></td>
+                                <td colspan="2"  width="180"><input class="myInput" readonly="readonly" id="a_ldname" name="a_ldname" lay-verify="required" autocomplete="off"/></td>
                                 <td colspan="2" width="125">联系方式</td>
-                                <td colspan="2" width="175"><input class="myInput" id="a_ldtel" name="a_ldtel" lay-verify="required|number" autocomplete="off"/></td>
+                                <td colspan="2" width="175"><input class="myInput" readonly="readonly" id="a_ldtel" name="a_ldtel" lay-verify="required|number" autocomplete="off"/></td>
                             </tr>
                             <tr>
                                 <td height="70">活动时间</td>
-                                <td colspan="2"  width="180"><input class="myInput" id="a_time" name="a_time" lay-verify="required" autocomplete="off"/></td>
+                                <td colspan="2"  width="180"><input class="myInput" readonly="readonly" id="a_time" name="a_time" lay-verify="required" autocomplete="off"/></td>
                                 <td colspan="2" width="125">活动地点</td>
-                                <td colspan="2" width="175"><input class="myInput" id="a_place" name="a_place" lay-verify="required" autocomplete="off"/></td>
+                                <td colspan="2" width="175"><input class="myInput" readonly="readonly" id="a_place" name="a_place" lay-verify="required" autocomplete="off"/></td>
                             </tr>
                             <tr>
                                 <td width="140" height="70;" align="center">赞助情况</td>
-                                <td width="470" colspan="6" ><input class="layui-input myInput" id="a_auspices" name="a_auspices" lay-verify="required" autocomplete="off"/></td>
+                                <td width="470" colspan="6" ><input class="layui-input myInput" readonly="readonly" id="a_auspices" name="a_auspices" lay-verify="required" autocomplete="off"/></td>
                             </tr>
                             <tr>
                                 <td height="210">活动计划</td>
-                                <td  colspan="6"><textarea class="myTextarea" id="a_plan" name="a_plan" lay-verify="required|a_plan" style="height: 190px;"></textarea></td>
+                                <td  colspan="6"><textarea class="myTextarea" readonly="readonly" id="a_plan" name="a_plan" lay-verify="required|a_plan" style="height: 190px;"></textarea></td>
                             </tr>
                             <tr>
                                 <td height="180">活动意义及预期评估</td>
-                                <td  colspan="6"><textarea class="myTextarea" id="a_expect" name="a_expect" lay-verify="required|a_sense" autocomplete="off"></textarea></td>
+                                <td  colspan="6"><textarea class="myTextarea" readonly="readonly" id="a_expect" name="a_expect" lay-verify="required|a_sense" autocomplete="off"></textarea></td>
                             </tr>
                         </table>
-                        <input id="u_id" name="u_id" style="display: none" />
-                        <input id="a_status" name="a_status"/>
-                        <div style="width:100%;margin: 20px auto;">
-                            <button class="layui-btn" id="pz" lay-filter="add" lay-submit="" style="width:150px; height: 40px; margin-left:45%;">提交</button>
+                        <input id="a_id" name="a_id" style="display: none" />
+                        <div style="width:100%;margin: 20px auto;" id="cz">
+                            <button class="layui-btn"  lay-filter="agree" lay-submit="" style="width:150px; height: 40px; float: left;margin-left: 30%">同意</button>
+                            <button class="layui-btn"  lay-filter="disagree" lay-submit="" style="width:150px; height: 40px;float: left;">不同意</button>
+                            <div style="clear: both"></div>
                         </div>
 
                     </form>
@@ -129,35 +130,30 @@
     </div>
     </body>
     <script>
+        var aStatus = $("#a_status").val();
+        //console.log(aStatus);
+        if (aStatus != 0) {
+            $("#pz").hide();
+        }
+
         layui.use(['form', 'layer'],function() {
             $ = layui.jquery;
             var form = layui.form,
                 layer = layui.layer;
 
 
-            var aStatus = $("#a_status").val();
-            console.log(aStatus);
-            if (aStatus != 0) {
-                $("#pz").hide();
-            }
-
-            //提交申请
-            form.on('submit(add)', function (data) {
-                //console.log(data.field);
-                var u_id = localStorage.getItem("u_id");
+            //同意申请
+            form.on('submit(agree)', function (data) {
                 var d = data.field;
-                /*$.ajax({
+                $.ajax({
                     type: "POST",
-                    url: "/applyActivity",
-                    data: {u_id:u_id,co_name:d.co_name,a_name:d.a_name,a_ldname:d.a_ldname,
-                            a_ldtel:d.a_ldtel,a_time:d.a_time,a_place:d.a_place,
-                            a_auspices:d.a_auspices,a_plan:d.a_plan,a_expect:d.a_expect},
+                    url: "/agreeActivity",
+                    data: d,
                     success: function(data){
                         if(data.flag == 1){
                             layer.alert(data.content, {icon: 6},function(index) {
-                                layer.close(index);
-                                $("#apply")[0].reset();
-                                layui.form.render();
+                                var index = parent.layer.getFrameIndex(window.name);
+                                parent.layer.close(index)
                             });
                         }else {
                             layer.alert(data.content,{icon: 5},function() {});
@@ -165,11 +161,32 @@
 
                     }
                 });
-
                return false;
-            });*/
+            });
 
-            })
+            //不同意申请
+            form.on('submit(disagree)', function (data) {
+                var d = data.field;
+                $.ajax({
+                    type: "POST",
+                    url: "/disagreeActivity",
+                    data: d,
+                    success: function(data){
+                        if(data.flag == 1){
+                            layer.alert(data.content, {icon: 6},function(index) {
+                                var index = parent.layer.getFrameIndex(window.name);
+                                parent.layer.close(index)
+                            });
+                        }else {
+                            layer.alert(data.content,{icon: 5},function() {});
+                        }
+
+                    }
+                });
+                return false;
+            });
+
+
         })
     </script>
 </html>

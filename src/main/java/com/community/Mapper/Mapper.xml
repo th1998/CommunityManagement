@@ -26,12 +26,26 @@
             <result column="ap_target" property="ap_target"/>
             <result column="ap_time" property="ap_time"/>
         </association>
+        <association property="community" javaType="com.community.model.Community">
+            <id column="co_id" property="co_id" />
+            <result column="u_id" property="u_id"/>
+            <result column="co_name" property="co_name"/>
+            <result column="co_ldname" property="co_ldname"/>
+            <result column="co_ldtel" property="co_ldtel"/>
+            <result column="co_guname" property="co_guname"/>
+            <result column="co_gutel" property="co_gutel"/>
+            <result column="co_bill" property="co_bill"/>
+            <result column="co_introduce" property="co_introduce"/>
+            <result column="co_creattime" property="co_creattime"/>
+        </association>
     </resultMap>
 
     <select id="login" resultMap="UserAndApply" parameterType="com.community.model.User">
         select * from c_user u
-        left join (select * from c_apply) a
-        on u.id = a.u_id
+        left join (select * from c_community) c
+        on u.id = c.u_id
+				left join (select * from c_apply) a
+                on u.id = a.u_id
         where username = #{username} and password = #{password}
     </select>
 

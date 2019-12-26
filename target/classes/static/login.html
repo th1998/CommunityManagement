@@ -45,9 +45,23 @@
 						url: "/login",
 						data: {username:$("#username").val(), password:$("#password").val()},
 						success: function(data){
+							console.log(data)
 							if(data.length == 1){
 								localStorage.setItem("u_id",data[0].id);
 								localStorage.setItem("c_role",data[0].role);
+								if(data[0].apply == null){
+									console.log("申请为空")
+								}else {
+									console.log("申请不为空")
+								}
+
+								if(data[0].community == null){
+									console.log("社团为空")
+									localStorage.setItem("co_id",-1);
+								}else{
+									console.log("社团不为空")
+									localStorage.setItem("co_id",data[0].community.co_id);
+								}
 								//localStorage.setItem("c_id",data[0].apply.c_id);
 								location.href="/index.html";
 							}else {
@@ -64,7 +78,7 @@
 	</script>
 
 	<link rel="stylesheet" href="./css/login.css" type="text/css" media="all" />
-	<link rel="stylesheet" href="https://www.jq22.com/jquery/font-awesome.4.7.0.css">
+
 
 </head>
 
@@ -126,7 +140,6 @@
 	<!-- //copyright -->
 
 	<script src="./js/jquery.min.js"></script>
-	<script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
 	<script src="./js/canva_moving_effect.js"></script>
 
 

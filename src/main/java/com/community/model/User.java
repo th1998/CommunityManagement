@@ -8,6 +8,7 @@ public class User {
     private String deptment;
     private Integer role;
     private Apply apply;
+    private Community community;
 
     public Integer getId() {
         return id;
@@ -63,5 +64,13 @@ public class User {
 
     public void setApply(Apply apply) {
         this.apply = apply;
+    }
+
+    public Community getCommunity() {
+        return community;
+    }
+
+    public void setCommunity(Community community) {
+        this.community = community;
     }
 }

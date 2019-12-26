@@ -24,4 +24,5 @@ public interface CommunityDao {
     //显示所有社团 show-community
     @Select("select * from c_community")
     public List<Community> showCommunity();
+
 }

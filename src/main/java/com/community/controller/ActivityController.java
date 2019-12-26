@@ -59,4 +59,60 @@ public class ActivityController {
         map.put("getApplyActivity",pageInfo);
         return map;
     }
+
+
+    //同意活动
+    @RequestMapping("/agreeActivity")
+    @ResponseBody
+    public ResultMsg agreeActivity(Integer a_id){
+        int i = activityService.agreeActivity(a_id);
+        if(i>0){
+            return new ResultMsg(1,"审批成功！");
+        }
+        return new ResultMsg(0,"审批失败！");
+    }
+
+    //不同意活动
+    @RequestMapping("/disagreeActivity")
+    @ResponseBody
+    public ResultMsg disagreeActivity(Integer a_id){
+        int i = activityService.disagreeActivity(a_id);
+        if(i>0){
+            return new ResultMsg(1,"审批成功！");
+        }
+        return new ResultMsg(0,"审批失败！");
+    }
+
+    //查询活动
+    @RequestMapping("/getActivityList")
+    @ResponseBody
+    public Map getActivityList(String page, String limit){
+        PageHelper.startPage(Integer.valueOf(page).intValue(), Integer.valueOf(limit).intValue());
+        List<Activity> list = activityService.getActivityList(page,limit);
+        PageInfo pageInfo = new PageInfo(list);
+        Map<String,Object> map = new HashMap<>();
+        map.put("getActivityList",pageInfo);
+        return map;
+    }
+
+    //撤销活动
+    @RequestMapping("/undoActivity")
+    @ResponseBody
+    public ResultMsg undoActivity(Integer a_id){
+        int i = activityService.undoActivity(a_id);
+        if(i>0){
+            return new ResultMsg(1,"撤销成功！");
+        }
+        return new ResultMsg(0,"撤销失败！");
+    }
+
+    //活动记录
+    @RequestMapping("/activityHistory")
+    @ResponseBody
+    public Map activityHistory(Integer u_id){
+        List<Activity>  list= activityService.activityHistory(u_id);
+        Map<String,Object> map = new HashMap<>();
+        map.put("activityHistory",list);
+        return map;
+    }
 }

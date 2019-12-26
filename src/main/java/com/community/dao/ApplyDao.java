@@ -22,8 +22,16 @@ public interface ApplyDao {
     @Update("update c_apply set ap_status = 1 where ap_id = #{ap_id}")
     public int ratifyCommunity(Integer ap_id);
 
+    //不批准成立社团  apply-community-look
+    @Update("update c_apply set ap_status = 2 where ap_id = #{ap_id}")
+    public int disagreeCommunity(Integer ap_id);
+
     //将审批通过的社团插入到社团表  apply-community-look
     @Insert("insert into c_community(c_id,co_name,co_ldname,co_ldtel,co_guname,co_introduce,co_creattime) " +
             "values(#{c_id},#{co_name},#{co_ldname},#{co_ldtel},#{co_guname},#{co_introduce},#{co_creattime})")
     public int insertCommunity(Community community);
+
+    //社团申请记录
+    @Select("select * from c_apply where u_id = #{u_id}")
+    public List<Apply> communityHistory(Integer u_id);
 }
