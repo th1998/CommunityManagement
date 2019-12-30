@@ -56,8 +56,10 @@
     <p style="color: orange;">未批准</p>
     {{#  } else if(d.m_status == 1){ }}
     <p style="color: #00FF00;">同意</p>
-    {{# }else{ }}
+    {{# }else if(d.m_status == 2){ }}
     <p style="color: red;">不同意</p>
+    {{# }else{ }}
+    <p style="color: red;">已退团</p>
     {{# } }}
 </script>
 <script>

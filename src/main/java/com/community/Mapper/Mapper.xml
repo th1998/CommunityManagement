@@ -49,6 +49,40 @@
         where username = #{username} and password = #{password}
     </select>
 
+    <resultMap type="com.community.model.Member" id="MemberAndCommunity">
+        <id column="m_id" property="m_id" />
+        <result column="co_id" property="co_id"/>
+        <result column="u_id" property="u_id"/>
+        <result column="m_status" property="m_status"/>
+        <result column="m_name" property="m_name"/>
+        <result column="m_no" property="m_no"/>
+        <result column="m_class" property="m_class"/>
+        <result column="m_dept" property="m_dept"/>
+        <result column="m_tel" property="m_tel"/>
+        <result column="m_applytime" property="m_applytime"/>
+        <result column="m_updatetime" property="m_updatetime"/>
+        <result column="m_movetime" property="m_movetime"/>
+        <association property="community" javaType="com.community.model.Community">
+            <id column="co_id" property="co_id" />
+            <result column="u_id" property="u_id"/>
+            <result column="co_name" property="co_name"/>
+            <result column="co_ldname" property="co_ldname"/>
+            <result column="co_ldtel" property="co_ldtel"/>
+            <result column="co_guname" property="co_guname"/>
+            <result column="co_gutel" property="co_gutel"/>
+            <result column="co_bill" property="co_bill"/>
+            <result column="co_introduce" property="co_introduce"/>
+            <result column="co_creattime" property="co_creattime"/>
+        </association>
+    </resultMap>
+
+    <select id="getJoinCommunity" resultMap="MemberAndCommunity" parameterType="int">
+        select m_id,m.co_id,m.u_id,m_status,c.co_name,c.co_ldname,c.co_ldtel from c_member m
+        left join (select co_id,u_id as ld_id,co_name,co_ldname,co_ldtel from c_community) c
+        on m.co_id = c.co_id
+        where m.u_id = #{u_id}
+        and m.m_status =1
+    </select>
 
 
     <!-- 批量删用户 -->

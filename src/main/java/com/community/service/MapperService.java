@@ -1,6 +1,7 @@
 package com.community.service;
 
 import com.community.dao.MapperDao;
+import com.community.model.Member;
 import com.community.model.User;
 import org.springframework.stereotype.Service;
 
@@ -17,4 +18,6 @@ public class MapperService {
     //批量删除用户
     public int delUsers(List<Object> list){ return mapperDao.delUsers(list);}
 
+    //学生查看自己加入的社团
+    public List<Member> getJoinCommunity(Integer u_id,String page, String limit){ return mapperDao.getJoinCommunity(u_id);}
 }

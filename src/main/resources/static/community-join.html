@@ -2,7 +2,7 @@
 <html class="x-admin-sm">
 <head>
     <meta charset="UTF-8">
-    <title>成员加入社团列表</title>
+    <title>学生加入社团</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="stylesheet" href="./css/font.css">
@@ -43,56 +43,38 @@
     </div>
 </div>
 </body>
+
 <script type="text/html" id="caozuo">
-    {{#  if(d.m_status == 0){ }}
-    <button  class='layui-btn layui-btn-normal ' lay-event="agree">同意</button >
-    <button  class='layui-btn layui-btn-normal ' lay-event="disagree">不同意</button >
-    {{# }else{ }}
-    <p>无</p>
-    {{# } }}
-</script>
-<script type="text/html" id="m_status">
-    {{#  if(d.m_status == 0){ }}
-    <p style="color: orange;">未批准</p>
-    {{#  } else if(d.m_status == 1){ }}
-    <p style="color: #00FF00;">同意</p>
-    {{# }else if(d.m_status == 2){ }}
-    <p style="color: red;">不同意</p>
-    {{# }else{ }}
-    <p style="color: red;">已退团</p>
-    {{# } }}
+    <button  class='layui-btn layui-btn-normal ' lay-event="move">退团</button >
 </script>
 <script>
     layui.use(['form','table'], function(){
         var table = layui.table;
         var form = layui.form;
 
+        var u_id = localStorage.getItem("u_id")
 
         table.render({
             elem: '#tableId'
-            , url: '/getMemberList'
+            , url: '/getJoinCommunity'
+            ,where:{u_id:u_id}
             , cols: [[
                 {checkbox: true, fixed: true}
-                , {field: 'm_id', width:55,title: 'ID'}
-                , {field: 'co_id',hide:true, title: '社团ID'}
-                , {field: 'u_id',hide:true, title: '用户ID'}
-                , {field: 'm_name', title: '姓名'}
-                , {field: 'm_no', title: '班级'}
-                , {field: 'm_applytime',title: '申请时间'}
-                , {field: 'm_updatetime',hide:true,title: '修改时间'}
-                , {field: 'm_movetime',hide:true,title: '退出时间'}
-                , {field: 'm_status', title: '状态', templet: '#m_status'}
+                , {field: 'co_id',title: '社团ID'}
+                , {field: 'co_name', title: '社团名称'}
+                , {field: 'co_ldname', title: '社团负责人'}
+                , {field: 'co_ldtel', title: '联系方式'}
                 , {title: '操作', templet: '#caozuo'}
             ]]
             , page: true
             , response: {statusCode: 0}
             , parseData: function (res) {
-                //console.log(res);
+                console.log(res);
                 return {
                     "code": 0,
                     "msg": "",
-                    "count": res.getMemberList.total,
-                    "data": res.getMemberList.list
+                    "count": res.getJoinCommunityList.total,
+                    "data": res.getJoinCommunityList.list
                 }
             }
         });
@@ -101,15 +83,15 @@
         table.on('tool(demo)', function (obj) {
             var data = obj.data;
             console.log(data)
-            if (obj.event === 'agree') {
+            if (obj.event === 'move') {
                 $.ajax({
                     type: "POST",
-                    url: "/agreeJoin",
-                    data: {m_id:data.m_id},
+                    url: "/moveCommunity",
+                    data: {co_id:data.co_id,u_id:u_id},
                     success: function (data) {
                         layer.msg(data.content,{ icon:1, time:1000, shade:0.4 },function() {
                             table.reload('tableId', {
-                                url: '/getMemberList',
+                                url: '/getJoinCommunity',
                                 where: {},
                                 page: {
                                     curr: 1

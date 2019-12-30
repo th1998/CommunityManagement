@@ -77,4 +77,14 @@ public class MemberController {
         }
         return new ResultMsg(0,"审批失败！");
     }
+
+    @RequestMapping("/moveCommunity")
+    @ResponseBody
+    public ResultMsg moveCommunity(Integer co_id,Integer u_id){
+        int i = memberService.moveCommunity(co_id, u_id);
+        if(i>0){
+            return new ResultMsg(1,"退团成功！");
+        }
+        return new ResultMsg(0,"退团失败！");
+    }
 }

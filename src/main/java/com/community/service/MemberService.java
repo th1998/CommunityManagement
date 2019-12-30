@@ -23,4 +23,7 @@ public class MemberService {
 
     //审批加入社团处理不同意
     public int disagreeJoin(Integer m_id){ return  memberDao.disagreeJoin(m_id);}
+
+    //退团
+    public int moveCommunity(Integer co_id,Integer u_id){ return memberDao.moveCommunity(co_id, u_id);}
 }

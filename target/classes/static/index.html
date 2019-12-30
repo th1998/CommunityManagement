@@ -126,17 +126,22 @@
                     <!--学生功能-->
                     <li id="applyCommunity" style="display: none">
                         <a onclick="xadmin.add_tab('社团创立申请','apply-community.html')">
-                            <i class="iconfont left-nav-li" lay-tips="学生功能">&#xe723;</i>
+                            <i class="iconfont left-nav-li" lay-tips="社团创立申请">&#xe723;</i>
                             <cite>社团创立申请</cite>
                         </a>
                     </li>
                     <li id="showCommunity" style="display: none">
                         <a onclick="xadmin.add_tab('查看社团','show-community.html')">
-                            <i class="iconfont left-nav-li" lay-tips="学生功能">&#xe723;</i>
+                            <i class="iconfont left-nav-li" lay-tips="查看社团">&#xe723;</i>
                             <cite>查看社团</cite>
                         </a>
                     </li>
-
+                    <li id="showCommunityJoin" style="display: none">
+                        <a onclick="xadmin.add_tab('加入社团','community-join.html')">
+                            <i class="iconfont left-nav-li" lay-tips="加入社团">&#xe723;</i>
+                            <cite>加入社团</cite>
+                        </a>
+                    </li>
                     <!--社团事务处理-->
                     <li id="adminLi" style="display: none">
                         <a href="javascript:;">
@@ -207,13 +212,16 @@
             $("#userLi").attr("style","display:block")
             $("#adminLi").attr("style","display:block")
         }
-        if(role == 8){
+        if(role == 8 && co_id != -1){
             $("#applyCommunity").attr("style","display:block")
             $("#showCommunity").attr("style","display:block")
-        }
-        if(co_id != -1){
             $("#communityWorkLi").attr("style","display:block")
             $("#applyHistoryLi").attr("style","display:block")
+        }
+        if(co_id == -1 && role == 8){
+            $("#applyCommunity").attr("style","display:block")
+            $("#showCommunity").attr("style","display:block")
+            $("#showCommunityJoin").attr("style","display:block")
         }
     </script>
 

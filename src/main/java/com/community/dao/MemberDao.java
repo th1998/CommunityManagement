@@ -1,10 +1,7 @@
 package com.community.dao;
 
 import com.community.model.Member;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -27,4 +24,8 @@ public interface MemberDao {
     //审批加入社团处理不同意
     @Update("update c_member set m_status = 2 where m_id = #{m_id}")
     public int disagreeJoin(Integer m_id);
+
+    //退团
+    @Update("update c_member set m_status = 3 where co_id = #{co_id} and u_id = #{u_id}")
+    public int moveCommunity(@Param("co_id") Integer co_id,@Param("u_id") Integer u_id);
 }

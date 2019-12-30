@@ -13,6 +13,7 @@ public class Member {
     private String m_applytime;
     private String m_updatetime;
     private String m_movetime;
+    private Community community;
 
     public Integer getM_id() {
         return m_id;
@@ -108,5 +109,13 @@ public class Member {
 
     public void setM_movetime(String m_movetime) {
         this.m_movetime = m_movetime;
+    }
+
+    public Community getCommunity() {
+        return community;
+    }
+
+    public void setCommunity(Community community) {
+        this.community = community;
     }
 }

@@ -1,5 +1,6 @@
 package com.community.dao;
 
+import com.community.model.Member;
 import com.community.model.User;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -12,4 +13,7 @@ public interface MapperDao {
     public int delUsers(List<Object> list);
 
     public List<User> login(User user);
+
+    //学生查看自己加入的社团
+    public List<Member> getJoinCommunity(Integer u_id);
 }
