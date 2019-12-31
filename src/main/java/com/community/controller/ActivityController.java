@@ -115,4 +115,11 @@ public class ActivityController {
         map.put("activityHistory",list);
         return map;
     }
+
+    //本周活动显示
+    @RequestMapping("/showActivity")
+    @ResponseBody
+    public List<Activity> showActivity(){
+        return activityService.showActivity();
+    }
 }

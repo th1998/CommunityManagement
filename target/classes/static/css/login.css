@@ -100,7 +100,7 @@ img {
 body {
 	font-family: 'Open Sans', sans-serif;
 	font-size: 100%;
-	background: #2196F3;
+	background-image: url("/images/loginbackground.jpg");
 }
 /*--header--*/
 
