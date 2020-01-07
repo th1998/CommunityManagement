@@ -46,9 +46,9 @@ public class MemberController {
     //查询申请入社列表  apply-member-list
     @RequestMapping("/getMemberList")
     @ResponseBody
-    public Map getMemberList(String page, String limit){
+    public Map getMemberList(Integer co_id,String page, String limit){
         PageHelper.startPage(Integer.valueOf(page).intValue(), Integer.valueOf(limit).intValue());
-        List<Member> list = memberService.getMemberList(page,limit);
+        List<Member> list = memberService.getMemberList(co_id,page,limit);
         PageInfo pageInfo = new PageInfo(list);
         Map<String,Object> map = new HashMap<>();
         map.put("getMemberList",pageInfo);

@@ -67,10 +67,12 @@
         var table = layui.table;
         var form = layui.form;
 
+        var co_id = localStorage.getItem("co_id");
 
         table.render({
             elem: '#tableId'
             , url: '/getMemberList'
+            ,where:{co_id:co_id}
             , cols: [[
                 {checkbox: true, fixed: true}
                 , {field: 'm_id', width:55,title: 'ID'}

@@ -14,8 +14,8 @@ public interface MemberDao {
     public int applyJoinCommunity(Member member);
 
     //查询申请入社列表  apply-member-list
-    @Select("select * from c_member")
-    public List<Member> getMemberList();
+    @Select("select * from c_member where co_id = #{co_id}")
+    public List<Member> getMemberList(Integer co_id);
 
     //审批加入社团处理同意
     @Update("update c_member set m_status = 1 where m_id = #{m_id}")

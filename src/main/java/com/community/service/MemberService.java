@@ -16,7 +16,7 @@ public class MemberService {
     public int applyJoinCommunity(Member member){ return memberDao.applyJoinCommunity(member);}
 
     //查询申请入社列表  apply-member-list
-    public List<Member> getMemberList(String page, String limit){ return memberDao.getMemberList();}
+    public List<Member> getMemberList(Integer co_id,String page, String limit){ return memberDao.getMemberList(co_id);}
 
     //审批加入社团处理同意
     public int agreeJoin(Integer m_id){ return  memberDao.agreeJoin(m_id);}
