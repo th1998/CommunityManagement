@@ -18,7 +18,12 @@ public class MemberController {
     @Autowired
     private MemberService memberService;
 
-
+    //检查是否过该加入社团   member-add
+    @RequestMapping("/checkJoinCommunity")
+    @ResponseBody
+    public int checkJoinCommunity(Integer u_id,Integer co_id){
+        return memberService.checkJoinCommunity(u_id, co_id);
+    }
 
     //申请加入社团   member-add
     @RequestMapping("/applyJoinCommunity")

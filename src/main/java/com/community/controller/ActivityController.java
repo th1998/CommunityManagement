@@ -116,10 +116,17 @@ public class ActivityController {
         return map;
     }
 
-    //本周活动显示
+    //今日活动显示
     @RequestMapping("/showActivity")
     @ResponseBody
     public List<Activity> showActivity(){
         return activityService.showActivity();
+    }
+
+    //以后活动显示
+    @RequestMapping("/showActivity2")
+    @ResponseBody
+    public List<Activity> showActivity2(){
+        return activityService.showActivity2();
     }
 }

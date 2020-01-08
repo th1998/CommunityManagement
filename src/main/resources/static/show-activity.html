@@ -20,7 +20,7 @@
           <span class="layui-breadcrumb">
             <a href="">首页</a>
             <a>
-              <cite>本周活动</cite></a>
+              <cite>活动显示</cite></a>
           </span>
           <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="刷新">
             <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i></a>
@@ -28,13 +28,34 @@
         <div class="layui-fluid">
             <div class="layui-row layui-col-space15">
                 <div class="layui-col-md12">
+
                     <div class="layui-card">
                         <div class="layui-card-header">
-                          本周活动
+                          今日活动
                         </div>
                         <div class="layui-card-body ">
                           <ul class="layui-timeline" id="list">
-<!--
+
+                          </ul>
+                        </div>
+                    </div>
+
+                    <div class="layui-card">
+                        <div class="layui-card-header">
+                            以后活动
+                        </div>
+                        <div class="layui-card-body ">
+                            <ul class="layui-timeline" id="list2">
+
+                            </ul>
+                        </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+        <!--
                             <li class="layui-timeline-item">
                               <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
                               <div class="layui-timeline-content layui-text">
@@ -94,12 +115,6 @@ tab记忆功能，刷新保留之前打开的tab （利用cookie 保存点击过
                               </div>
                             </li>
 -->
-                          </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
     <script>
         $.ajax({
             type: "POST",
@@ -107,6 +122,23 @@ tab记忆功能，刷新保留之前打开的tab （利用cookie 保存点击过
             success: function (res) {
                 for (var i=0;i<res.length;i++){
                     $("#list").append('<li class="layui-timeline-item">\n' +
+                        '                              <i class="layui-icon layui-timeline-axis">&#xe63f;</i>\n' +
+                        '                              <div class="layui-timeline-content layui-text">\n' +
+                        '                                <h3 class="layui-timeline-title">'+res[i].co_name+'</h3>\n' +
+                        '                                <h3 class="layui-timeline-title">'+res[i].a_time+' <span style="margin-left: 15px;font-size: 14px;">'+res[i].a_place+'</span></h3>\n' +
+                        '                                <p style="width: 750px;">'+res[i].a_plan+'</p>\n' +
+                        '                              </div>\n' +
+                        '                            </li>')
+                }
+            }
+        })
+
+        $.ajax({
+            type: "POST",
+            url: "/showActivity2",
+            success: function (res) {
+                for (var i=0;i<res.length;i++){
+                    $("#list2").append('<li class="layui-timeline-item">\n' +
                         '                              <i class="layui-icon layui-timeline-axis">&#xe63f;</i>\n' +
                         '                              <div class="layui-timeline-content layui-text">\n' +
                         '                                <h3 class="layui-timeline-title">'+res[i].co_name+'</h3>\n' +

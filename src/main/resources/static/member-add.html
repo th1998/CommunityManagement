@@ -68,25 +68,42 @@
         var form = layui.form,
             layer = layui.layer;
 
+        var u_id = localStorage.getItem("u_id");
 
 
         //监听提交
         form.on('submit(add)',function(data) {
             var d=data.field;
-            //console.log(d)
+
             $.ajax({
                 type: "POST",
-                url: "/applyJoinCommunity",
-                data: data.field,
+                url: "/checkJoinCommunity",
+                data: {u_id:u_id,co_id:d.co_id},
                 success: function (data) {
-                    console.log(data)
-                    if(data.flag == 1){
-                        layer.alert(data.content, {icon: 6},function() {
+
+                    if(data == 0){
+                        $.ajax({
+                            type: "POST",
+                            url: "/applyJoinCommunity",
+                            data: data.field,
+                            success: function (data) {
+                                console.log(data)
+                                if(data.flag == 1){
+                                    layer.alert(data.content, {icon: 6},function() {
+                                        var index = parent.layer.getFrameIndex(window.name);
+                                        parent.layer.close(index);
+                                    });
+                                }else {
+                                    layer.alert(data.content);
+                                }
+                            }
+                        })
+                        return false;
+                    }else {
+                        layer.alert("您已经加入了该社团！", {icon: 6},function() {
                             var index = parent.layer.getFrameIndex(window.name);
                             parent.layer.close(index);
                         });
-                    }else {
-                        layer.alert(data.content);
                     }
                 }
             })

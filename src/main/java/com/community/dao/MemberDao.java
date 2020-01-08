@@ -8,6 +8,10 @@ import java.util.List;
 @Mapper
 public interface MemberDao {
 
+    //检查是否过该加入社团   member-add
+    @Select("select count(*) from c_member where u_id = #{u_id} and co_id = #{co_id} and m_status = 1")
+    public int checkJoinCommunity(@Param("u_id") Integer u_id,@Param("co_id") Integer co_id);
+
     //申请加入社团   member-add
     @Insert("insert into c_member(co_id,u_id,m_status,m_name,m_no,m_class,m_dept,m_tel,m_applytime)" +
             "values(#{co_id},#{u_id},0,#{m_name},#{m_no},#{m_class},#{m_dept},#{m_tel},#{m_applytime})")

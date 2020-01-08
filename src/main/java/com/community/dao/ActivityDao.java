@@ -40,9 +40,15 @@ public interface ActivityDao {
     @Select("select * from c_activity where u_id = #{u_id}")
     public List<Activity> activityHistory(Integer u_id);
 
-    //本周活动显示
+    //今日活动显示
     @Select("select * from c_activity " +
-            "where date_sub(curdate(), interval 7 day) <= a_time " +
+            "where CURDATE() = str_to_date(a_time,'%Y-%m-%d') " +
             "and a_status = 1")
     public List<Activity> showActivity();
+
+    //以后活动显示
+    @Select("select * from c_activity \n" +
+            "where CURDATE() < str_to_date(a_time,'%Y-%m-%d')\n" +
+            "and a_status = 1")
+    public List<Activity> showActivity2();
 }

@@ -33,6 +33,9 @@ public class ActivityService {
     //活动记录
     public List<Activity> activityHistory(Integer u_id){ return activityDao.activityHistory(u_id);}
 
-    //本周活动显示
+    //今日活动显示
     public List<Activity> showActivity(){ return  activityDao.showActivity();}
+
+    //以后活动显示
+    public List<Activity> showActivity2(){ return  activityDao.showActivity2();}
 }

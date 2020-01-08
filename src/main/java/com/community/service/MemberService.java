@@ -12,6 +12,9 @@ public class MemberService {
     @Resource
     MemberDao memberDao;
 
+    //检查是否过该加入社团   member-add
+    public int checkJoinCommunity(Integer u_id,Integer co_id){ return memberDao.checkJoinCommunity(u_id, co_id);}
+
     //申请加入社团   member-add
     public int applyJoinCommunity(Member member){ return memberDao.applyJoinCommunity(member);}
 
