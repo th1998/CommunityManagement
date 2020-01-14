@@ -1,6 +1,6 @@
 package com.community.controller;
 
-import com.community.model.Member;
+import com.community.model.MemberApply;
 import com.community.model.ResultMsg;
 import com.community.service.MemberService;
 import com.github.pagehelper.PageHelper;
@@ -28,18 +28,18 @@ public class MemberController {
     //申请加入社团   member-add
     @RequestMapping("/applyJoinCommunity")
     @ResponseBody
-    public ResultMsg applyJoinCommunity(Member member){
+    public ResultMsg applyJoinCommunity(MemberApply memberApply){
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String  m_applytime= df.format(new Date());
 
-        Member m = new Member();
-        m.setCo_id(member.getCo_id());
-        m.setU_id(member.getU_id());
-        m.setM_name(member.getM_name());
-        m.setM_no(member.getM_no());
-        m.setM_class(member.getM_class());
-        m.setM_dept(member.getM_dept());
-        m.setM_tel(member.getM_tel());
+        MemberApply m = new MemberApply();
+        m.setCo_id(memberApply.getCo_id());
+        m.setU_id(memberApply.getU_id());
+        m.setM_name(memberApply.getM_name());
+        m.setM_no(memberApply.getM_no());
+        m.setM_class(memberApply.getM_class());
+        m.setM_dept(memberApply.getM_dept());
+        m.setM_tel(memberApply.getM_tel());
         m.setM_applytime(m_applytime);
         int i = memberService.applyJoinCommunity(m);
         if(i>0){
@@ -53,7 +53,7 @@ public class MemberController {
     @ResponseBody
     public Map getMemberList(Integer co_id,String page, String limit){
         PageHelper.startPage(Integer.valueOf(page).intValue(), Integer.valueOf(limit).intValue());
-        List<Member> list = memberService.getMemberList(co_id,page,limit);
+        List<MemberApply> list = memberService.getMemberList(co_id,page,limit);
         PageInfo pageInfo = new PageInfo(list);
         Map<String,Object> map = new HashMap<>();
         map.put("getMemberList",pageInfo);

@@ -99,7 +99,7 @@
                                     <td  colspan="6"><textarea class="myTextarea" readonly="readonly" id="ap_target" name="ap_target" lay-verify="required|ap_target" autocomplete="off"></textarea></td>
                                 </tr>
                                 <input id="ap_id" name="ap_id" style="display: none;">
-                                <input id="c_id" name="c_id" style="display: none;">
+                                <input id="u_id" name="u_id" style="display: none;">
 
                             </table>
 
@@ -132,12 +132,11 @@
 
             //同意
             form.on('submit(add)',function(data) {
+               console.log(data.field)
                 $.ajax({
                     type: "POST",
                     url: "/ratifyCommunity",
-                    data: {ap_id:data.field.ap_id,c_id:c_id,co_name:co_name,
-                        co_ldname:co_ldname,co_ldtel:co_ldtel,
-                        co_guname:co_guname,co_gutel:co_gutel,co_introduce:co_introduce},
+                    data: data.field,
                     success: function(data){
                         if(data.flag == 1){
                             layer.alert(data.content, {icon: 6},function(index) {

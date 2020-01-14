@@ -30,6 +30,7 @@ public class ApplyController {
     public ResultMsg applyCommunity(Apply apply){
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String  ap_time= df.format(new Date());
+        System.out.println("--------"+apply.getU_id());
         Apply ap = new Apply();
         ap.setU_id(apply.getU_id());
         ap.setAp_status(0);
@@ -67,20 +68,20 @@ public class ApplyController {
     //批准成立社团  apply-community-look
     @RequestMapping("/ratifyCommunity")
     @ResponseBody
-    public ResultMsg ratifyCommunity(Integer ap_id,Integer u_id,String co_name,String co_ldname,String co_ldtel,String co_guname,String co_gutel,String co_introduce){
+    public ResultMsg ratifyCommunity(Integer ap_id,Apply apply){
         int i = applyService.ratifyCommunity(ap_id);
-
+        System.out.println("1:"+apply.getGu_tel());
         if(i>0){
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String  co_creattime= df.format(new Date());
             Community co = new Community();
-            co.setU_id(u_id);
-            co.setCo_name(co_name);
-            co.setCo_ldname(co_ldname);
-            co.setCo_ldtel(co_ldtel);
-            co.setCo_guname(co_guname);
-            co.setCo_gutel(co_gutel);
-            co.setCo_introduce(co_introduce);
+            co.setU_id(apply.getU_id());
+            co.setCo_name(apply.getAp_name());
+            co.setCo_ldname(apply.getLd_name());
+            co.setCo_ldtel(apply.getLd_tel());
+            co.setCo_guname(apply.getGu_name());
+            co.setCo_gutel(apply.getGu_tel());
+            co.setCo_introduce(apply.getAp_introduce());
             co.setCo_creattime(co_creattime);
             int j = applyService.insertCommunity(co);
             return new ResultMsg(1,"审批完成！");

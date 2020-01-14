@@ -10,8 +10,8 @@ import java.util.List;
 public interface ApplyDao {
 
     //申请创立社团 apply-community
-    @Insert("insert into c_apply(c_id,ap_status,ap_name,ld_name,ld_tel,ld_deptment,ld_class,gu_name,gu_tel,ap_introduce,ap_target,ap_time) " +
-            "values(#{c_id},#{ap_status},#{ap_name},#{ld_name},#{ld_tel},#{ld_deptment},#{ld_class},#{gu_name},#{gu_tel},#{ap_introduce},#{ap_target},#{ap_time})")
+    @Insert("insert into c_apply(u_id,ap_status,ap_name,ld_name,ld_tel,ld_deptment,ld_class,gu_name,gu_tel,ap_introduce,ap_target,ap_time) " +
+            "values(#{u_id},#{ap_status},#{ap_name},#{ld_name},#{ld_tel},#{ld_deptment},#{ld_class},#{gu_name},#{gu_tel},#{ap_introduce},#{ap_target},#{ap_time})")
     public int applyCommunity(Apply apply);
 
     //申请社团列表 apply-community-list
@@ -27,8 +27,8 @@ public interface ApplyDao {
     public int disagreeCommunity(Integer ap_id);
 
     //将审批通过的社团插入到社团表  apply-community-look
-    @Insert("insert into c_community(c_id,co_name,co_ldname,co_ldtel,co_guname,co_introduce,co_creattime) " +
-            "values(#{c_id},#{co_name},#{co_ldname},#{co_ldtel},#{co_guname},#{co_introduce},#{co_creattime})")
+    @Insert("insert into c_community(u_id,co_name,co_ldname,co_ldtel,co_guname,co_gutel,co_introduce,co_creattime) " +
+            "values(#{u_id},#{co_name},#{co_ldname},#{co_ldtel},#{co_guname},#{co_gutel},#{co_introduce},#{co_creattime})")
     public int insertCommunity(Community community);
 
     //社团申请记录

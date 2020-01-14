@@ -1,6 +1,6 @@
 package com.community.model;
 
-public class Member {
+public class MemberApply {
     private Integer m_id;
     private Integer co_id;
     private Integer u_id;

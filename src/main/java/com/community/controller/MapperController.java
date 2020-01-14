@@ -1,7 +1,7 @@
 package com.community.controller;
 
 import com.community.model.Community;
-import com.community.model.Member;
+import com.community.model.MemberApply;
 import com.community.model.ResultMsg;
 import com.community.model.User;
 import com.community.service.MapperService;
@@ -36,7 +36,7 @@ public class MapperController {
     @ResponseBody
     public Map getJoinCommunity(Integer u_id,String page, String limit){
         PageHelper.startPage(Integer.valueOf(page).intValue(), Integer.valueOf(limit).intValue());
-        List<Member> list = mapperService.getJoinCommunity(u_id,page,limit);
+        List<MemberApply> list = mapperService.getJoinCommunity(u_id,page,limit);
 
         List<Community> c = new ArrayList<>();
         for (int i = 0;i<list.size();i++){
