@@ -15,23 +15,7 @@
           <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
           <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
-        <script>
-            $.ajax({
-                type: "POST",
-                url: "/communityCount",
-                success: function (data) {
-                    for (var i = 0; i < data.length; i++) {
-                        $("#sjtj").append('<li class="layui-col-md2 layui-col-xs6">\n' +
-                            '                                    <a href="javascript:;" class="x-admin-backlog-body">\n' +
-                            '                                        <h3>' + data[i].co_name + '</h3>\n' +
-                            '                                        <p>\n' +
-                            '                                            <cite>'+data[i].amount+'</cite></p>\n' +
-                            '                                    </a>\n' +
-                            '                                </li>');
-                    }
-                }
-            })
-        </script>
+
     </head>
 
     <body>
@@ -41,7 +25,7 @@
                     <div class="layui-card">
                         <div class="layui-card-body ">
                             <blockquote class="layui-elem-quote">欢迎管理员：
-                                <span class="x-red">test</span>！当前时间:2018-04-25 20:50:53
+                                <span class="x-red" id="username">aaaaa</span><span id="sj"></span>
                             </blockquote>
                         </div>
                     </div>
@@ -64,126 +48,163 @@
                         </div>
                     </div>
                 </div>
-                <div class="layui-col-sm6 layui-col-md3">
-                    <div class="layui-card">
-                        <div class="layui-card-header">下载
-                            <span class="layui-badge layui-bg-cyan layuiadmin-badge">月</span></div>
-                        <div class="layui-card-body  ">
-                            <p class="layuiadmin-big-font">33,555</p>
-                            <p>新下载
-                                <span class="layuiadmin-span-color">10%
-                                    <i class="layui-inline layui-icon layui-icon-face-smile-b"></i></span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="layui-col-sm6 layui-col-md3">
-                    <div class="layui-card">
-                        <div class="layui-card-header">下载
-                            <span class="layui-badge layui-bg-cyan layuiadmin-badge">月</span></div>
-                        <div class="layui-card-body ">
-                            <p class="layuiadmin-big-font">33,555</p>
-                            <p>新下载
-                                <span class="layuiadmin-span-color">10%
-                                    <i class="layui-inline layui-icon layui-icon-face-smile-b"></i></span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="layui-col-sm6 layui-col-md3">
-                    <div class="layui-card">
-                        <div class="layui-card-header">下载
-                            <span class="layui-badge layui-bg-cyan layuiadmin-badge">月</span></div>
-                        <div class="layui-card-body ">
-                            <p class="layuiadmin-big-font">33,555</p>
-                            <p>新下载
-                                <span class="layuiadmin-span-color">10%
-                                    <i class="layui-inline layui-icon layui-icon-face-smile-b"></i></span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="layui-col-sm6 layui-col-md3">
-                    <div class="layui-card">
-                        <div class="layui-card-header">下载
-                            <span class="layui-badge layui-bg-cyan layuiadmin-badge">月</span></div>
-                        <div class="layui-card-body ">
-                            <p class="layuiadmin-big-font">33,555</p>
-                            <p>新下载
-                                <span class="layuiadmin-span-color">10%
-                                    <i class="layui-inline layui-icon layui-icon-face-smile-b"></i></span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
+
                 <div class="layui-col-md12">
                     <div class="layui-card">
-                        <div class="layui-card-header">系统信息</div>
+                        <div class="layui-card-header">今日活动</div>
                         <div class="layui-card-body ">
-                            <table class="layui-table">
-                                <tbody>
-                                    <tr>
-                                        <th>xxx版本</th>
-                                        <td>1.0.180420</td></tr>
-                                    <tr>
-                                        <th>服务器地址</th>
-                                        <td>x.xuebingsi.com</td></tr>
-                                    <tr>
-                                        <th>操作系统</th>
-                                        <td>WINNT</td></tr>
-                                    <tr>
-                                        <th>运行环境</th>
-                                        <td>Apache/2.4.23 (Win32) OpenSSL/1.0.2j mod_fcgid/2.3.9</td></tr>
-                                    <tr>
-                                        <th>PHP版本</th>
-                                        <td>5.6.27</td></tr>
-                                    <tr>
-                                        <th>PHP运行方式</th>
-                                        <td>cgi-fcgi</td></tr>
-                                    <tr>
-                                        <th>MYSQL版本</th>
-                                        <td>5.5.53</td></tr>
-                                    <tr>
-                                        <th>ThinkPHP</th>
-                                        <td>5.0.18</td></tr>
-                                    <tr>
-                                        <th>上传附件限制</th>
-                                        <td>2M</td></tr>
-                                    <tr>
-                                        <th>执行时间限制</th>
-                                        <td>30s</td></tr>
-                                    <tr>
-                                        <th>剩余空间</th>
-                                        <td>86015.2M</td></tr>
-                                </tbody>
-                            </table>
+                            <ul class="layui-timeline" id="list">
+
+                            </ul>
                         </div>
                     </div>
                 </div>
+
                 <div class="layui-col-md12">
                     <div class="layui-card">
-                        <div class="layui-card-header">开发团队</div>
+                        <div class="layui-card-header">以后活动</div>
                         <div class="layui-card-body ">
-                            <table class="layui-table">
-                                <tbody>
-                                    <tr>
-                                        <th>版权所有</th>
-                                        <td>xuebingsi(xuebingsi)
-                                            <a href="http://x.xuebingsi.com/" target="_blank">访问官网</a></td>
-                                    </tr>
-                                    <tr>
-                                        <th>开发者</th>
-                                        <td>马志斌(113664000@qq.com)</td></tr>
-                                </tbody>
-                            </table>
+                            <ul class="layui-timeline" id="list2">
+
+                            </ul>
                         </div>
                     </div>
                 </div>
+
+
                 <style id="welcome_style"></style>
                 <div class="layui-col-md12">
-                    <blockquote class="layui-elem-quote layui-quote-nm">感谢layui,百度Echarts,jquery,本系统由x-admin提供技术支持。</blockquote></div>
+                    <blockquote class="layui-elem-quote layui-quote-nm">重庆工程学院 学生社团管理系统</blockquote></div>
             </div>
         </div>
         </div>
     </body>
+    <script>
+
+        var username = localStorage.getItem("username")
+        $("#username").html(username)
+        $.ajax({
+            type: "POST",
+            url: "/communityCount",
+            success: function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    $("#sjtj").append('<li class="layui-col-md2 layui-col-xs6">\n' +
+                        '                                    <a href="javascript:;" class="x-admin-backlog-body">\n' +
+                        '                                        <h3>' + data[i].co_name + '</h3>\n' +
+                        '                                        <p>\n' +
+                        '                                            <cite>'+data[i].amount+'</cite></p>\n' +
+                        '                                    </a>\n' +
+                        '                                </li>');
+                }
+            }
+        })
+
+        $.ajax({
+            type: "POST",
+            url: "/showActivity",
+            success: function (res) {
+                for (var i=0;i<res.length;i++){
+                    $("#list").append('<li class="layui-timeline-item">\n' +
+                        '                              <i class="layui-icon layui-timeline-axis">&#xe63f;</i>\n' +
+                        '                              <div class="layui-timeline-content layui-text">\n' +
+                        '                                <h3 class="layui-timeline-title">'+res[i].co_name+'</h3>\n' +
+                        '                                <h3 class="layui-timeline-title">'+res[i].a_time+' <span style="margin-left: 15px;font-size: 14px;">'+res[i].a_place+'</span></h3>\n' +
+                        '                                <p style="width: 750px;">'+res[i].a_plan+'</p>\n' +
+                        '                              </div>\n' +
+                        '                            </li>')
+                }
+            }
+        })
+
+        $.ajax({
+            type: "POST",
+            url: "/showActivity2",
+            success: function (res) {
+                for (var i=0;i<res.length;i++){
+                    $("#list2").append('<li class="layui-timeline-item">\n' +
+                        '                              <i class="layui-icon layui-timeline-axis">&#xe63f;</i>\n' +
+                        '                              <div class="layui-timeline-content layui-text">\n' +
+                        '                                <h3 class="layui-timeline-title">'+res[i].co_name+'</h3>\n' +
+                        '                                <h3 class="layui-timeline-title">'+res[i].a_time+' <span style="margin-left: 15px;font-size: 14px;">'+res[i].a_place+'</span></h3>\n' +
+                        '                                <p style="width: 750px;">'+res[i].a_plan+'</p>\n' +
+                        '                              </div>\n' +
+                        '                            </li>')
+                }
+            }
+        })
+
+    </script>
+
+    <script>
+
+
+        // JavaScript Document
+        function getBit(m,n) { return (m>>n)&1;}
+
+        function lunarDate(d){
+            var numString = "一二三四五六七八九十";
+            var monString = "正二三四五六七八九十冬腊";
+            var Cal = [0x41A95,0xD4A,0xDA5,0x20B55,0x56A,0x7155B,0x25D,0x92D,0x5192B,0xA95,0xB4A,0x416AA,0xAD5,0x90AB5,0x4BA,0xA5B,0x60A57,0x52B,0xA93,0x40E95];
+            var madd=[0,31,59,90,120,151,181,212,243,273,304,334];
+
+            var total,m,n,k;
+            var isEnd = false;
+            var tmp = d.getYear();
+            if (tmp<1900) tmp+=1900;
+            total=(tmp-2001)*365+Math.floor((tmp-2001)/4)+madd[d.getMonth()]+d.getDate()-23;
+            if(d.getYear()%4==0&&d.getMonth()>1) total++;
+
+            for(m=0;;m++)
+            {
+                k=(Cal[m]<0xfff)?11:12;
+                for(n=k;n>=0;n--)
+                {
+                    if(total<=29+getBit(Cal[m],n))
+                    {
+                        isEnd=true;
+                        break;
+                    }
+                    total = total-29-getBit(Cal[m],n);
+                }
+                if(isEnd) break;
+            }
+
+            var cYear=2001 + m;
+            var cMonth=k-n+1;
+            var cDay=total;
+            if(k==12)
+            {
+                if(cMonth==Math.floor(Cal[m]/0x10000)+1)
+                    cMonth=1-cMonth;
+                if(cMonth>Math.floor(Cal[m]/0x10000)+1)
+                    cMonth--;
+            }
+            var cHour=Math.floor((d.getHours()+3)/2);
+
+            var tmp="";
+            if(cMonth<1)
+            {
+                tmp+="闰";
+                tmp+=monString.charAt(-cMonth-1);
+            }
+            else
+            {tmp+=monString.charAt(cMonth-1);}
+            tmp+="月";
+            tmp+=(cDay<11)?"初":((cDay<20)?"十":((cDay<30)?"廿":"卅"));
+            if(cDay%10!=0||cDay==10)
+                tmp+=numString.charAt((cDay-1)%10);
+            return tmp;
+        }
+
+        function getDateString(){
+            var d = new Date();
+            var ymd = d.getFullYear() + "年" + (d.getMonth()+1) + "月" + d.getDate() + "日";
+            var week = ['日', '一', '二', '三', '四', '五', '六'];
+            var w = "星期" + week[d.getDay()];
+            var l = "农历" + lunarDate(d);
+            return ymd + " " + l + " " + w;
+        }
+
+        $("#sj").html(" ！当前时间"+getDateString());
+    </script>
 </html>

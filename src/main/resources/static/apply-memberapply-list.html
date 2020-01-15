@@ -101,13 +101,13 @@
 
         //监听查看或者同意
         table.on('tool(demo)', function (obj) {
-            var data = obj.data;
-            console.log(data)
+            var d = obj.data;
+            console.log(d)
             if (obj.event === 'agree') {
                 $.ajax({
                     type: "POST",
                     url: "/agreeJoin",
-                    data: {m_id:data.m_id},
+                    data: d,
                     success: function (data) {
                         layer.msg(data.content,{ icon:1, time:1000, shade:0.4 },function() {
                             table.reload('tableId', {

@@ -1,10 +1,12 @@
 package com.community.controller;
 
+import com.community.model.Member;
 import com.community.model.MemberApply;
 import com.community.model.ResultMsg;
 import com.community.service.MemberService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import jdk.nashorn.internal.ir.RuntimeNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -64,9 +66,25 @@ public class MemberController {
     //审批加入社团处理同意
     @RequestMapping("/agreeJoin")
     @ResponseBody
-    public ResultMsg agreeJoin(Integer m_id){
+    public ResultMsg agreeJoin(Integer m_id,Integer co_id,Integer u_id,String m_name,String m_class,String m_no,String m_dept,String m_tel){
+        System.out.println("---:"+co_id);
+        System.out.println("---:"+u_id);
+        System.out.println("---:"+m_name);
+        System.out.println("---:"+m_class);
+        System.out.println("---:"+m_no);
+        System.out.println("---:"+m_dept);
+        System.out.println("---:"+m_tel);
         int i = memberService.agreeJoin(m_id);
         if(i>0){
+            Member m = new  Member();
+            m.setCo_id(co_id);
+            m.setU_id(u_id);
+            m.setV_name(m_name);
+            m.setV_no(m_no);
+            m.setV_class(m_class);
+            m.setV_dept(m_dept);
+            m.setV_tel(m_tel);
+            memberService.insertMember(m);
             return new ResultMsg(1,"审批成功！");
         }
         return new ResultMsg(0,"审批失败！");
@@ -83,6 +101,7 @@ public class MemberController {
         return new ResultMsg(0,"审批失败！");
     }
 
+    //退团
     @RequestMapping("/moveCommunity")
     @ResponseBody
     public ResultMsg moveCommunity(Integer co_id,Integer u_id){
@@ -91,5 +110,17 @@ public class MemberController {
             return new ResultMsg(1,"退团成功！");
         }
         return new ResultMsg(0,"退团失败！");
+    }
+
+    //社团负责人查看本社团成员
+    @RequestMapping("/memberAll")
+    @ResponseBody
+    public Map memberAll(Integer co_id,String page, String limit){
+        PageHelper.startPage(Integer.valueOf(page).intValue(), Integer.valueOf(limit).intValue());
+        List<Member> list = memberService.memberAll(co_id,page,limit);
+        PageInfo pageInfo = new PageInfo(list);
+        Map<String,Object> map = new HashMap<>();
+        map.put("memberAll",pageInfo);
+        return map;
     }
 }

@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="./css/font.css">
         <link rel="stylesheet" href="./css/xadmin.css">
         <!-- <link rel="stylesheet" href="./css/theme5.css"> -->
-        <script type="text/javascript" src="./js/jquery.min.js"></script>
+        <script type="text/javascript" src="./js/jquery-3.3.1.min.js"></script>
         <script src="./lib/layui/layui.js" charset="utf-8"></script>
         <script type="text/javascript" src="./js/xadmin.js"></script>
         <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
@@ -36,7 +36,7 @@
             </ul>
             <ul class="layui-nav right" lay-filter="">
                 <li class="layui-nav-item">
-                    <a href="javascript:;">admin</a>
+                    <a href="javascript:;" id="username"></a>
                     <dl class="layui-nav-child">
                         <!-- 二级菜单 -->
                         <dd>
@@ -130,6 +130,12 @@
                             <cite>社团创立申请</cite>
                         </a>
                     </li>
+                    <li id="memberAll" style="display: none">
+                        <a onclick="xadmin.add_tab('社团成员','member-list.html')">
+                            <i class="iconfont left-nav-li" lay-tips="社团成员">&#xe723;</i>
+                            <cite>社团成员</cite>
+                        </a>
+                    </li>
                     <li id="showCommunity" style="display: none">
                         <a onclick="xadmin.add_tab('查看社团','show-community.html')">
                             <i class="iconfont left-nav-li" lay-tips="查看社团">&#xe723;</i>
@@ -202,11 +208,14 @@
         <!-- 右侧主体结束 -->
         <!-- 中部结束 -->
 
-
     </body>
     <script>
+        var username = localStorage.getItem("username")
+        $("#username").html(username)
         var role = localStorage.getItem("c_role")
         var co_id = localStorage.getItem("co_id")
+
+
 
         if(role == 10){
             $("#userLi").attr("style","display:block")
@@ -216,8 +225,10 @@
         if(role == 8 && co_id != -1){
             $("#applyCommunity").attr("style","display:block")
             $("#showCommunity").attr("style","display:block")
+            $("#memberAll").attr("style","display:block")
             $("#communityWorkLi").attr("style","display:block")
             $("#applyHistoryLi").attr("style","display:block")
+            $("#show-activity").attr("src","./show-activity.html")
         }
         if(co_id == -1 && role == 8){
             $("#applyCommunity").attr("style","display:block")
@@ -226,5 +237,6 @@
             $("#show-activity").attr("src","./show-activity.html")
         }
     </script>
+
 
 </html>

@@ -1,5 +1,6 @@
 package com.community.dao;
 
+import com.community.model.Member;
 import com.community.model.MemberApply;
 import org.apache.ibatis.annotations.*;
 
@@ -25,6 +26,11 @@ public interface MemberDao {
     @Update("update c_memberapply set m_status = 1 where m_id = #{m_id}")
     public int agreeJoin(Integer m_id);
 
+    //同意加入社团插入成员表
+    @Insert("insert into c_member(co_id,u_id,v_name,v_no,v_class,v_dept,v_tel)" +
+            "values(#{co_id},#{u_id},#{v_name},#{v_no},#{v_class},#{v_dept},#{v_tel})")
+    public int insertMember(Member member);
+
     //审批加入社团处理不同意
     @Update("update c_memberapply set m_status = 2 where m_id = #{m_id}")
     public int disagreeJoin(Integer m_id);
@@ -32,4 +38,8 @@ public interface MemberDao {
     //退团
     @Update("update c_memberapply set m_status = 3 where co_id = #{co_id} and u_id = #{u_id}")
     public int moveCommunity(@Param("co_id") Integer co_id,@Param("u_id") Integer u_id);
+
+    //社团负责人查看本社团成员
+    @Select("select * from c_member where co_id = #{co_id}")
+    public List<Member> memberAll(Integer co_id);
 }

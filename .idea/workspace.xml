@@ -2,43 +2,31 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="44e4010c-b478-4118-a9ac-4259d923cf9a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/target/classes/static/images/upload/20200114175201_53.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/community/model/Member.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/member-list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/community/model/Member.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/member-list.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/community/Mapper/Mapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/community/Mapper/Mapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/community/controller/ApplyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/community/controller/ApplyController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/community/controller/MapperController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/community/controller/MapperController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/community/controller/MemberController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/community/controller/MemberController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/community/dao/ApplyDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/community/dao/ApplyDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/community/dao/MapperDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/community/dao/MapperDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/community/dao/MemberDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/community/dao/MemberDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/community/model/Member.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/community/model/MemberApply.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/community/service/ApplyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/community/service/ApplyService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/community/service/MapperService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/community/service/MapperService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/community/service/MemberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/community/service/MemberService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/apply-community-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/apply-community-list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/apply-community-look.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/apply-community-look.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/apply-community.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/apply-community.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/apply-member-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/apply-memberapply-list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/community-bill.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/community-bill.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/activity-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/activity-list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/apply-memberapply-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/apply-memberapply-list.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/member-add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/member-add.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/show-community.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/show-community.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/community/Mapper/Mapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/community/Mapper/Mapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/community/controller/ApplyController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/community/controller/ApplyController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/community/controller/MapperController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/community/controller/MapperController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/welcome.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/welcome.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/community/controller/MemberController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/community/controller/MemberController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/community/dao/ApplyDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/community/dao/ApplyDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/community/dao/MapperDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/community/dao/MapperDao.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/community/dao/MemberDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/community/dao/MemberDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/community/model/Member.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/community/model/MemberApply.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/community/service/MapperService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/community/service/MapperService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/community/service/MemberService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/community/service/MemberService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/apply-community-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/apply-community-list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/apply-community-look.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/apply-community-look.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/apply-community.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/apply-community.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/apply-member-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/apply-memberapply-list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/community-bill.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/community-bill.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/activity-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/activity-list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/apply-memberapply-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/apply-memberapply-list.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/member-add.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/member-add.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/static/show-community.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/show-community.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/welcome.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/welcome.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,9 +93,9 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\projects\CommunityManagement\src\main\resources\static" />
       <recent name="E:\projects\CommunityManagement\src\main\resources\static\js" />
       <recent name="E:\projects\CommunityManagement\src\main\resources\static\images" />
-      <recent name="E:\projects\CommunityManagement\src\main\resources\static" />
       <recent name="E:\projects\CommunityManagement\src\main\resources\static\css" />
     </key>
   </component>
@@ -329,7 +317,9 @@
       <workItem from="1578463632075" duration="4024000" />
       <workItem from="1578469278735" duration="1215000" />
       <workItem from="1578986805981" duration="1266000" />
-      <workItem from="1578988572414" duration="5763000" />
+      <workItem from="1578988572414" duration="5811000" />
+      <workItem from="1579068969132" duration="7813000" />
+      <workItem from="1579076861475" duration="1564000" />
     </task>
     <task id="LOCAL-00001" summary="申请表">
       <created>1576571782824</created>
@@ -415,7 +405,14 @@
       <option name="project" value="LOCAL" />
       <updated>1578988981388</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="10">
+      <created>1578995587327</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1578995587327</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -477,7 +474,8 @@
     <MESSAGE value="7" />
     <MESSAGE value="8" />
     <MESSAGE value="9" />
-    <option name="LAST_COMMIT_MESSAGE" value="9" />
+    <MESSAGE value="10" />
+    <option name="LAST_COMMIT_MESSAGE" value="10" />
   </component>
   <component name="WindowStateProjectService">
     <state x="275" y="24" key="#Project_Structure" timestamp="1576548405219">
@@ -488,10 +486,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="137" y="20" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1576548448044" />
-    <state x="488" y="55" key="#com.intellij.ide.util.MemberChooser" timestamp="1578032611535">
+    <state x="488" y="55" key="#com.intellij.ide.util.MemberChooser" timestamp="1579071260629">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="488" y="55" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1578032611535" />
+    <state x="488" y="55" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1579071260629" />
     <state x="306" y="290" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1577242482196">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -508,46 +506,46 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="413" y="112" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1577777140944" />
-    <state x="182" y="0" key="CommitChangelistDialog2" timestamp="1578988979085">
+    <state x="182" y="0" key="CommitChangelistDialog2" timestamp="1578995585086">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="182" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1578988979085" />
+    <state x="182" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1578995585086" />
     <state x="463" y="120" key="FileChooserDialogImpl" timestamp="1577238210082">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="463" y="120" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1577238210082" />
-    <state width="1322" height="227" key="GridCell.Tab.0.bottom" timestamp="1578995528335">
+    <state width="1322" height="183" key="GridCell.Tab.0.bottom" timestamp="1579078408580">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1322" height="227" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1578995528335" />
-    <state width="1322" height="227" key="GridCell.Tab.0.center" timestamp="1578995528335">
+    <state width="1322" height="183" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1579078408580" />
+    <state width="1322" height="183" key="GridCell.Tab.0.center" timestamp="1579078408580">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1322" height="227" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1578995528335" />
-    <state width="1322" height="227" key="GridCell.Tab.0.left" timestamp="1578995528334">
+    <state width="1322" height="183" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1579078408580" />
+    <state width="1322" height="183" key="GridCell.Tab.0.left" timestamp="1579078408579">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1322" height="227" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1578995528334" />
-    <state width="1322" height="227" key="GridCell.Tab.0.right" timestamp="1578995528335">
+    <state width="1322" height="183" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1579078408579" />
+    <state width="1322" height="183" key="GridCell.Tab.0.right" timestamp="1579078408580">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1322" height="227" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1578995528335" />
-    <state width="1322" height="227" key="GridCell.Tab.1.bottom" timestamp="1578995528335">
+    <state width="1322" height="183" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1579078408580" />
+    <state width="1322" height="183" key="GridCell.Tab.1.bottom" timestamp="1579078408581">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1322" height="227" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1578995528335" />
-    <state width="1322" height="227" key="GridCell.Tab.1.center" timestamp="1578995528335">
+    <state width="1322" height="183" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1579078408581" />
+    <state width="1322" height="183" key="GridCell.Tab.1.center" timestamp="1579078408580">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1322" height="227" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1578995528335" />
-    <state width="1322" height="227" key="GridCell.Tab.1.left" timestamp="1578995528335">
+    <state width="1322" height="183" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1579078408580" />
+    <state width="1322" height="183" key="GridCell.Tab.1.left" timestamp="1579078408580">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1322" height="227" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1578995528335" />
-    <state width="1322" height="227" key="GridCell.Tab.1.right" timestamp="1578995528335">
+    <state width="1322" height="183" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1579078408580" />
+    <state width="1322" height="183" key="GridCell.Tab.1.right" timestamp="1579078408581">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1322" height="227" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1578995528335" />
+    <state width="1322" height="183" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1579078408581" />
     <state width="1322" height="176" key="GridCell.Tab.2.bottom" timestamp="1576573555110">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -572,10 +570,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="186" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1576550985692" />
-    <state x="275" y="98" key="Vcs.Push.Dialog.v2" timestamp="1578988984130">
+    <state x="275" y="98" key="Vcs.Push.Dialog.v2" timestamp="1578995590575">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="98" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1578988984130" />
+    <state x="275" y="98" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1578995590575" />
     <state x="370" y="124" width="626" height="480" key="find.popup" timestamp="1578989219443">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

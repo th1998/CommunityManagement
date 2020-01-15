@@ -47,6 +47,7 @@
 						success: function(data){
 							console.log(data)
 							if(data.length == 1){
+								localStorage.setItem("username",data[0].username);
 								localStorage.setItem("u_id",data[0].id);
 								localStorage.setItem("c_role",data[0].role);
 								if(data[0].apply == null){

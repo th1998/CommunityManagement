@@ -74,6 +74,7 @@
         //监听提交
         form.on('submit(add)',function(data) {
             var d=data.field;
+            console.log(d)
 
             $.ajax({
                 type: "POST",
@@ -85,7 +86,7 @@
                         $.ajax({
                             type: "POST",
                             url: "/applyJoinCommunity",
-                            data: data.field,
+                            data: d,
                             success: function (data) {
                                 console.log(data)
                                 if(data.flag == 1){
@@ -94,7 +95,7 @@
                                         parent.layer.close(index);
                                     });
                                 }else {
-                                    layer.alert(data.content);
+                                    layer.alert(data.content,{icon: 5});
                                 }
                             }
                         })

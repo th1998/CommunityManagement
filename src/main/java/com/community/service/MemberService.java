@@ -1,6 +1,7 @@
 package com.community.service;
 
 import com.community.dao.MemberDao;
+import com.community.model.Member;
 import com.community.model.MemberApply;
 import org.springframework.stereotype.Service;
 
@@ -24,9 +25,15 @@ public class MemberService {
     //审批加入社团处理同意
     public int agreeJoin(Integer m_id){ return  memberDao.agreeJoin(m_id);}
 
+    //同意加入社团插入成员表
+    public int insertMember(Member member){ return memberDao.insertMember(member);}
+
     //审批加入社团处理不同意
     public int disagreeJoin(Integer m_id){ return  memberDao.disagreeJoin(m_id);}
 
     //退团
     public int moveCommunity(Integer co_id,Integer u_id){ return memberDao.moveCommunity(co_id, u_id);}
+
+    //社团负责人查看本社团成员
+    public List<Member> memberAll(Integer co_id,String page, String limit){ return  memberDao.memberAll(co_id);}
 }
