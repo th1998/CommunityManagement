@@ -32,22 +32,22 @@ public class MapperController {
     }
 
     //学生查看自己加入的社团
-    @RequestMapping("/getJoinCommunity")
-    @ResponseBody
-    public Map getJoinCommunity(Integer u_id,String page, String limit){
-        PageHelper.startPage(Integer.valueOf(page).intValue(), Integer.valueOf(limit).intValue());
-        List<MemberApply> list = mapperService.getJoinCommunity(u_id,page,limit);
-
-        List<Community> c = new ArrayList<>();
-        for (int i = 0;i<list.size();i++){
-            c.add(list.get(i).getCommunity());
-        }
-
-        PageInfo pageInfo = new PageInfo(c);
-        Map<String,Object> map = new HashMap<>();
-        map.put("getJoinCommunityList",pageInfo);
-        return map;
-    }
+//    @RequestMapping("/getJoinCommunity")
+//    @ResponseBody
+//    public Map getJoinCommunity(Integer u_id,String page, String limit){
+//        PageHelper.startPage(Integer.valueOf(page).intValue(), Integer.valueOf(limit).intValue());
+//        List<MemberApply> list = mapperService.getJoinCommunity(u_id,page,limit);
+//
+//        List<Community> c = new ArrayList<>();
+//        for (int i = 0;i<list.size();i++){
+//            c.add(list.get(i).getCommunity());
+//        }
+//
+//        PageInfo pageInfo = new PageInfo(c);
+//        Map<String,Object> map = new HashMap<>();
+//        map.put("getJoinCommunityList",pageInfo);
+//        return map;
+//    }
 
     //批量删除用户
     @RequestMapping("/delUsers")

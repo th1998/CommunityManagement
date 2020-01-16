@@ -19,5 +19,5 @@ public class MapperService {
     public int delUsers(List<Object> list){ return mapperDao.delUsers(list);}
 
     //学生查看自己加入的社团
-    public List<MemberApply> getJoinCommunity(Integer u_id, String page, String limit){ return mapperDao.getJoinCommunity(u_id);}
+   // public List<MemberApply> getJoinCommunity(Integer u_id, String page, String limit){ return mapperDao.getJoinCommunity(u_id);}
 }

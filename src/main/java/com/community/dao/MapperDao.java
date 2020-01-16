@@ -15,5 +15,5 @@ public interface MapperDao {
     public List<User> login(User user);
 
     //学生查看自己加入的社团
-    public List<MemberApply> getJoinCommunity(Integer u_id);
+    //public List<MemberApply> getJoinCommunity(Integer u_id);
 }

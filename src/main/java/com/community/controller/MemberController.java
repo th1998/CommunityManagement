@@ -1,5 +1,6 @@
 package com.community.controller;
 
+import com.community.model.MApplyCommunityView;
 import com.community.model.Member;
 import com.community.model.MemberApply;
 import com.community.model.ResultMsg;
@@ -62,6 +63,18 @@ public class MemberController {
         return map;
     }
 
+    //退团申请列表  apply-membermove-list
+    @RequestMapping("/getMoveMemberList")
+    @ResponseBody
+    public Map getMoveMemberList(Integer co_id,String page, String limit){
+        PageHelper.startPage(Integer.valueOf(page).intValue(), Integer.valueOf(limit).intValue());
+        List<MemberApply> list = memberService.getMoveMemberList(co_id,page,limit);
+        PageInfo pageInfo = new PageInfo(list);
+        Map<String,Object> map = new HashMap<>();
+        map.put("getMoveMemberList",pageInfo);
+        return map;
+    }
+
 
     //审批加入社团处理同意
     @RequestMapping("/agreeJoin")
@@ -101,15 +114,38 @@ public class MemberController {
         return new ResultMsg(0,"审批失败！");
     }
 
-    //退团
+    //退团申请
     @RequestMapping("/moveCommunity")
     @ResponseBody
     public ResultMsg moveCommunity(Integer co_id,Integer u_id){
         int i = memberService.moveCommunity(co_id, u_id);
         if(i>0){
-            return new ResultMsg(1,"退团成功！");
+            return new ResultMsg(1,"请等待审批！");
         }
         return new ResultMsg(0,"退团失败！");
+    }
+
+    //同意退团申请
+    @RequestMapping("/agreeMove")
+    @ResponseBody
+    public ResultMsg agreeMove(Integer co_id,Integer u_id){
+        int i = memberService.agreeMove(co_id,u_id);
+        if(i>0){
+            memberService.updateStatus(co_id,u_id);
+            return new ResultMsg(1,"审批成功！");
+        }
+        return new ResultMsg(0,"审批失败！");
+    }
+
+    //同意退团申请
+    @RequestMapping("/disagreeMove")
+    @ResponseBody
+    public ResultMsg disagreeMove(Integer co_id,Integer u_id){
+        int i = memberService.disagreeMove(co_id,u_id);
+        if(i>0){
+            return new ResultMsg(1,"审批成功！");
+        }
+        return new ResultMsg(0,"审批失败！");
     }
 
     //社团负责人查看本社团成员
@@ -121,6 +157,29 @@ public class MemberController {
         PageInfo pageInfo = new PageInfo(list);
         Map<String,Object> map = new HashMap<>();
         map.put("memberAll",pageInfo);
+        return map;
+    }
+
+    //删除社团成员
+    @RequestMapping("/memberDel")
+    @ResponseBody
+    public ResultMsg memberDel(Integer v_id){
+        int i = memberService.memberDel(v_id);
+        if(i>0){
+            return new ResultMsg(1,"删除成员成功");
+        }
+        return new ResultMsg(0,"删除成员成功");
+    }
+
+    //用户查看自己加入的社团的历史信息
+    @RequestMapping("/getJoinCommunity")
+    @ResponseBody
+    public Map getJoinCommunity(Integer u_id,String page, String limit){
+        PageHelper.startPage(Integer.valueOf(page).intValue(), Integer.valueOf(limit).intValue());
+        List<MApplyCommunityView> list = memberService.MApplyCommunityView(u_id, page, limit);
+        PageInfo pageInfo = new PageInfo(list);
+        Map<String,Object> map = new HashMap<>();
+        map.put("getJoinCommunityList",pageInfo);
         return map;
     }
 }

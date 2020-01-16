@@ -147,20 +147,37 @@
                 success: function (res) {
 
                     for(var i = 0 ;i<res.length;i++){
-                        $('#tableId').append('<div class="single-memberApply effect-2">\n' +
-                            '                                    <div class="memberApply-image">\n' +
-                            '                                        <img src="./images'+res[i].co_bill+'" width="270" height="220" alt="Member">\n' +
-                            '                                    </div>\n' +
-                            '                                    <div class="memberApply-info">\n' +
-                            '                                        <h3>'+res[i].co_name+'</h3>\n' +
-                            '                                        <h5>'+res[i].co_ldname+'</h5>\n' +
-                            '                                        <p class="introduce">'+res[i].co_introduce+'</p>\n' +
-                            '                                        <div class="social-touch">\n' +
-                            '                                            <a href="javascript:void(0);" style="color: white" onclick=look("'+res[i].co_id+'","'+res[i].co_name +'","'+res[i].co_ldname+'","'+res[i].co_guname +'","'+res[i].co_introduce+'")>查 看</a>\n' +
-                            '                                            <a href="javascript:void(0);" style="color: white" onclick="apply('+res[i].co_id+')">申 请</a>\n' +
-                            '                                        </div>\n' +
-                            '                                    </div>\n' +
-                            '                                </div>');
+                        if(res[i].co_bill == null){
+                            $('#tableId').append('<div class="single-memberApply effect-2">\n' +
+                                '                                    <div class="memberApply-image">\n' +
+                                '                                        <img src="./images/l.png" width="270" height="220" alt="Member">\n' +
+                                '                                    </div>\n' +
+                                '                                    <div class="memberApply-info">\n' +
+                                '                                        <h3>'+res[i].co_name+'</h3>\n' +
+                                '                                        <h5>'+res[i].co_ldname+'</h5>\n' +
+                                '                                        <p class="introduce">'+res[i].co_introduce+'</p>\n' +
+                                '                                        <div class="social-touch">\n' +
+                                '                                            <a href="javascript:void(0);" style="color: white" onclick=look("'+res[i].co_id+'","'+res[i].co_name +'","'+res[i].co_ldname+'","'+res[i].co_guname +'","'+res[i].co_introduce+'")>查 看</a>\n' +
+                                '                                            <a href="javascript:void(0);" style="color: white" onclick="apply('+res[i].co_id+')">申 请</a>\n' +
+                                '                                        </div>\n' +
+                                '                                    </div>\n' +
+                                '                                </div>');
+                        }else{
+                            $('#tableId').append('<div class="single-memberApply effect-2">\n' +
+                                '                                    <div class="memberApply-image">\n' +
+                                '                                        <img src="./images'+res[i].co_bill+'" width="270" height="220" alt="Member">\n' +
+                                '                                    </div>\n' +
+                                '                                    <div class="memberApply-info">\n' +
+                                '                                        <h3>'+res[i].co_name+'</h3>\n' +
+                                '                                        <h5>'+res[i].co_ldname+'</h5>\n' +
+                                '                                        <p class="introduce">'+res[i].co_introduce+'</p>\n' +
+                                '                                        <div class="social-touch">\n' +
+                                '                                            <a href="javascript:void(0);" style="color: white" onclick=look("'+res[i].co_id+'","'+res[i].co_name +'","'+res[i].co_ldname+'","'+res[i].co_guname +'","'+res[i].co_introduce+'")>查 看</a>\n' +
+                                '                                            <a href="javascript:void(0);" style="color: white" onclick="apply('+res[i].co_id+')">申 请</a>\n' +
+                                '                                        </div>\n' +
+                                '                                    </div>\n' +
+                                '                                </div>');
+                        }
                     }
                     layui.use('element', function() {
                         var element = layui.element;

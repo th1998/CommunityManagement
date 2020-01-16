@@ -49,6 +49,7 @@
         where username = #{username} and password = #{password}
     </select>
 
+    <!--
     <resultMap type="com.community.model.MemberApply" id="MemberAndCommunity">
         <id column="m_id" property="m_id" />
         <result column="co_id" property="co_id"/>
@@ -84,7 +85,7 @@
         and m.m_status =1
     </select>
 
-
+-->
     <!-- 批量删用户 -->
     <delete id="delUsers" parameterType="List">
         delete from c_user where id in
