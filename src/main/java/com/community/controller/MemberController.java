@@ -182,4 +182,22 @@ public class MemberController {
         map.put("getJoinCommunityList",pageInfo);
         return map;
     }
+
+    //修改编辑成员信息
+    @RequestMapping("/editMember")
+    @ResponseBody
+    public ResultMsg editMember(Member member){
+        Member m = new Member();
+        m.setV_id(member.getV_id());
+        m.setV_no(member.getV_no());
+        m.setV_class(member.getV_class());
+        m.setV_tel(member.getV_tel());
+        m.setV_dept(member.getV_dept());
+        int i = memberService.editMember(m);
+        if(i>0){
+            return new ResultMsg(1,"修改成功！");
+        }
+        return new ResultMsg(0,"修改失败！");
+    }
+
 }

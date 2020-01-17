@@ -21,8 +21,9 @@ public interface CommunityDao {
     @Update("update c_community set co_bill = #{co_bill} where co_id = #{co_id}")
     public int uploadBill(@Param("co_bill") String co_bill,@Param("co_id") Integer co_id);
 
-    //显示所有社团 show-community
+    //显示所有社团 show-community , all-member-list
     @Select("select * from c_community")
     public List<Community> showCommunity();
+
 
 }

@@ -54,4 +54,7 @@ public class MemberService {
 
     //用户查看自己加入的社团的历史信息
     public List<MApplyCommunityView> MApplyCommunityView(Integer u_id,String page, String limit){ return memberDao.MApplyCommunityView(u_id);};
+
+    //修改编辑成员信息
+    public int editMember(Member member){ return memberDao.editMember(member);}
 }

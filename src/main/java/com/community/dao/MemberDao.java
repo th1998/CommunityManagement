@@ -66,4 +66,9 @@ public interface MemberDao {
     //用户查看自己加入的社团的历史信息
     @Select("select * from mapplycommunityview where u_id = #{u_id}")
     public List<MApplyCommunityView> MApplyCommunityView(Integer u_id);
+
+    //修改编辑成员信息
+    @Update("update c_member set v_no = #{v_no},v_class = #{v_class},v_tel = #{v_tel},v_dept= #{v_dept}" +
+            "where v_id = #{v_id}")
+    public int editMember(Member member);
 }

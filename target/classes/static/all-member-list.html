@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html class="x-admin-sm">
+    
+    <head>
+        <meta charset="UTF-8">
+        <title>全部成员列表</title>
+        <meta name="renderer" content="webkit">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <link rel="stylesheet" href="./css/font.css">
+        <link rel="stylesheet" href="./css/xadmin.css">
+        <script type="text/javascript" src="./js/jquery-3.3.1.min.js"></script>
+        <script src="./lib/layui/layui.js" charset="utf-8"></script>
+        <script type="text/javascript" src="./js/xadmin.js"></script>
+        <!--[if lt IE 9]>
+          <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+          <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    
+    <body>
+        <div class="x-nav">
+            <span class="layui-breadcrumb">
+                <a href="">首页</a>
+                <a>
+                    <cite>成员列表</cite></a>
+            </span>
+            <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="刷新">
+                <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i>
+            </a>
+        </div>
+        <div class="layui-fluid">
+            <div class="layui-row layui-col-space15">
+                <div class="layui-col-md12">
+                    <div class="layui-card">
+                        <div class="layui-card-body ">
+                            <form class="layui-form layui-col-space5">
+                                <div class="layui-form-item">
+                                    <div class="layui-input-inline">
+                                        <select name="community" id="community" lay-filter="community">
+                                            <option value="请选择" checked></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </form>
+                            <div style="float: left;margin-left: 5px;">
+                                <p id="ldname" style="float: left;height: 35px;line-height: 35px;"></p>
+                                <p id="ldtel" style="float: left;height: 35px;line-height: 35px;margin-left: 15px;"></p>
+                            </div>
+                        </div>
+
+                        <div class="layui-card-body " >
+
+                            <div class="layui-card-body ">
+                            <div id="tableId" lay-filter="demo">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </body>
+
+
+
+    <script>
+
+
+
+
+        layui.use(['form','table'], function() {
+            var table = layui.table;
+            var form = layui.form;
+
+            $.ajax({
+                type: "POST",
+                url: "/showCommunity",
+                success: function (res) {
+                    var htmls='';
+                    for(var i = 0;i<res.length;i++){
+                        htmls += '<option value = "' + res[i].co_id + '" id="' + res[i].co_id + '" co_ldname="' + res[i].co_ldname + '" co_ldtel="' + res[i].co_ldtel + '">' + res[i].co_name + '</option>'
+                    }
+                    $("#community").append(htmls);
+                    form.render();
+                }
+            })
+
+            form.on('select(community)', function(data) {
+                var co_id = data.value;
+                var co_ldname = $("#"+co_id).attr('co_ldname');
+                var co_ldtel = $("#"+co_id).attr('co_ldtel');
+
+                $("#ldname").html("负责人："+co_ldname);
+                $("#ldtel").html("联系方式："+co_ldtel);
+
+                table.render({
+                    elem: '#tableId'
+                    , url: '/memberAll'
+                    ,where:{co_id:co_id}
+                    , cols: [[
+                        {field: 'v_id', width:55,title: 'ID'}
+                        , {field: 'co_id',hide:true, title: '社团ID'}
+                        , {field: 'u_id',hide:true, title: '用户ID'}
+                        , {field: 'v_name', title: '姓名',edit: 'text'}
+                        , {field: 'v_no', title: '学号',edit: 'text'}
+                        , {field: 'v_class',title: '班级',edit: 'text'}
+                        , {field: 'v_tel',title: '联系方式',edit: 'text'}
+                        , {field: 'v_dept',title: '学院',edit: 'text'}
+                    ]]
+                    , page: true
+                    , response: {statusCode: 0}
+                    , parseData: function (res) {
+                        //console.log(res);
+                        return {
+                            "code": 0,
+                            "msg": "",
+                            "count": res.memberAll.total,
+                            "data": res.memberAll.list
+                        }
+                    }
+                });
+
+            })
+
+
+
+
+
+
+        });
+
+    </script>
+
+</html>
