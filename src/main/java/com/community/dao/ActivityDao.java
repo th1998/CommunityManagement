@@ -1,10 +1,7 @@
 package com.community.dao;
 
 import com.community.model.Activity;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -51,4 +48,9 @@ public interface ActivityDao {
             "where CURDATE() < str_to_date(a_time,'%Y-%m-%d')\n" +
             "and a_status = 1")
     public List<Activity> showActivity2();
+
+    //模糊查询活动
+    @Select("select * from c_activity where a_status =1 and a_name like '%${a_name}%'" +
+            "order by DATE(a_time) desc")
+    public List<Activity> serachActivityList(@Param(value="a_name") String a_name);
 }

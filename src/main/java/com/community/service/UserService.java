@@ -21,4 +21,7 @@ public class UserService {
 
     //删除单个用户  user-list
     public int userDel(Integer id){ return userDao.userDel(id);}
+
+    //模糊查询用户 user-list
+    public List<User> sreachUser(String no,String page, String limit){ return userDao.sreachUser(no);}
 }

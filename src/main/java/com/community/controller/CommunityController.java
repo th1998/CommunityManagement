@@ -121,4 +121,17 @@ public class CommunityController {
     public List<Community> showCommunity(){
         return communityService.showCommunity();
     }
+
+
+    //模糊查询社团  community-list
+    @RequestMapping("/sreachCommunity")
+    @ResponseBody
+    public Map sreachCommunity(String co_name,String page, String limit){
+        PageHelper.startPage(Integer.valueOf(page).intValue(), Integer.valueOf(limit).intValue());
+        List<Community> list = communityService.sreachCommunity(co_name, page, limit);
+        PageInfo pageInfo = new PageInfo(list);
+        Map<String,Object> map = new HashMap<>();
+        map.put("CommunityList",pageInfo);
+        return map;
+    }
 }

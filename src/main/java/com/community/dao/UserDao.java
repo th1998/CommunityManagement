@@ -1,10 +1,7 @@
 package com.community.dao;
 
 import com.community.model.User;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -22,4 +19,8 @@ public interface UserDao {
     //删除单个用户  user-list
     @Delete("delete from c_user where id = #{id}")
     public int userDel(Integer id);
+
+    //模糊查询用户 user-list
+    @Select("select * from c_user where no like '%${no}%'")
+    public List<User> sreachUser(@Param(value="no")String no);
 }

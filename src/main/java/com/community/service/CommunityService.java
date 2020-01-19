@@ -3,6 +3,7 @@ package com.community.service;
 import com.community.dao.CommunityDao;
 import com.community.model.Apply;
 import com.community.model.Community;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -27,4 +28,7 @@ public class CommunityService {
 
     //显示所有社团 show-community
     public List<Community> showCommunity(){ return communityDao.showCommunity();}
+
+    //模糊查询社团  community-list
+    public List<Community> sreachCommunity(String co_name,String page, String limit){ return communityDao.sreachCommunity(co_name);}
 }

@@ -2,6 +2,7 @@ package com.community.service;
 
 import com.community.dao.ActivityDao;
 import com.community.model.Activity;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -38,4 +39,7 @@ public class ActivityService {
 
     //以后活动显示
     public List<Activity> showActivity2(){ return  activityDao.showActivity2();}
+
+    //模糊查询活动
+    public List<Activity> serachActivityList(String a_name,String page, String limit){ return activityDao.serachActivityList(a_name);}
 }

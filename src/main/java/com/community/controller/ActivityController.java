@@ -129,4 +129,17 @@ public class ActivityController {
     public List<Activity> showActivity2(){
         return activityService.showActivity2();
     }
+
+
+    //查询活动申请列表
+    @RequestMapping("/serachActivityList")
+    @ResponseBody
+    public Map serachApplyActivity(String a_name,String page, String limit){
+        PageHelper.startPage(Integer.valueOf(page).intValue(), Integer.valueOf(limit).intValue());
+        List<Activity> list = activityService.serachActivityList(a_name, page, limit);
+        PageInfo pageInfo = new PageInfo(list);
+        Map<String,Object> map = new HashMap<>();
+        map.put("getActivityList",pageInfo);
+        return map;
+    }
 }

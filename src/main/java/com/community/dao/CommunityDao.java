@@ -25,5 +25,7 @@ public interface CommunityDao {
     @Select("select * from c_community")
     public List<Community> showCommunity();
 
-
+    //模糊查询社团  community-list
+    @Select("select * from c_community where co_name like '%${co_name}%'")
+    public List<Community> sreachCommunity(@Param(value="co_name") String co_name);
 }

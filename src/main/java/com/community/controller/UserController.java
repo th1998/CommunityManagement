@@ -61,4 +61,16 @@ public class UserController {
             return new ResultMsg(0,"用户删除失败");
         }
     }
+
+    //模糊查询用户 user-list
+    @RequestMapping("/sreachUser")
+    @ResponseBody
+    public Map sreachUser(String no,String page, String limit){
+        PageHelper.startPage(Integer.valueOf(page).intValue(), Integer.valueOf(limit).intValue());
+        List<User> list = userService.sreachUser(no, page, limit);
+        PageInfo pageInfo = new PageInfo(list);
+        Map<String,Object> map = new HashMap<>();
+        map.put("data",pageInfo);
+        return map;
+    }
 }

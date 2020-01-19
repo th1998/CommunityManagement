@@ -29,14 +29,14 @@
                 <div class="layui-col-md12">
                     <div class="layui-card">
                         <div class="layui-card-body ">
-                            <form class="layui-form layui-col-space5">
+
                                 <div class="layui-inline layui-show-xs-block">
-                                    <input type="text" name="username" placeholder="请输入社团名称" autocomplete="off" class="layui-input"></div>
+                                    <input type="text" id="co_name" name="co_name" placeholder="请输入社团名称" autocomplete="off" class="layui-input"></div>
                                 <div class="layui-inline layui-show-xs-block">
-                                    <button class="layui-btn" lay-submit="" lay-filter="sreach">
+                                    <button class="layui-btn"  data-type="reload" id="sreach">
                                         <i class="layui-icon">&#xe615;</i></button>
                                 </div>
-                            </form>
+
                         </div>
 
                         <div class="layui-card-body " >
@@ -77,7 +77,7 @@
               , page: true
               , response: {statusCode: 0}
               , parseData: function (res) {
-                  console.log(res);
+
                   return {
                       "code": 0,
                       "msg": "",
@@ -94,6 +94,28 @@
                   layer.alert(data.co_introduce,{title:'社团介绍'});
               }
           })
+
+          var $ = layui.$, active = {
+              reload: function(){
+                  var co_name = $('#co_name');
+                  console.log(co_name.val())
+                  table.reload('tableId', {
+                      url:'/sreachCommunity'
+                      ,page: {
+                          curr: 1
+                      }
+                      ,where: {
+                          co_name: co_name.val()
+                      }
+                  }, 'data');
+              }
+          };
+
+          $('#sreach').on('click', function(){
+              var type = $(this).data('type');
+              console.log(type)
+              active[type] ? active[type].call(this) : '';
+          });
 
       });
     </script>
