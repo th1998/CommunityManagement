@@ -12,5 +12,5 @@ public class LoginService {
     @Resource
     LoginDao loginDao;
     //用户登录
-    public List<User> Login(String username,String password){ return loginDao.Login(username, password);}
+    public List<User> Login(String no,String password){ return loginDao.Login(no, password);}
 }

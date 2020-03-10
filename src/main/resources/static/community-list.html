@@ -54,6 +54,7 @@
     </body>
     <script type="text/html" id="caozuo">
         <button  class='layui-btn layui-btn-normal ' lay-event="look">查看</button >
+        <button  class='layui-btn layui-btn-warm ' lay-event="undo">撤销</button >
     </script>
     <script>
       layui.use(['form','table'], function(){
@@ -72,7 +73,7 @@
                   , {field: 'co_ldtel',title: '负责人联系电话'}
                   , {field: 'co_guname', width:80,title: '指导老师'}
                   , {field: 'co_introduce', title: '社团介绍'}
-                  , {title: '操作',width:120, templet: '#caozuo'}
+                  , {title: '操作',width:160, templet: '#caozuo'}
               ]]
               , page: true
               , response: {statusCode: 0}
@@ -92,6 +93,27 @@
               console.log(data)
               if (obj.event === 'look') {
                   layer.alert(data.co_introduce,{title:'社团介绍'});
+              }else{
+                  layer.confirm('是否确定撤销该社团！', {icon: 6}, function (index) {
+                      $.ajax({
+                          type: "POST",
+                          url: "/undoCommunity",
+                          data: {co_id: data.co_id},
+                          success: function (data) {
+                            if(data.flag == 1){
+                                layer.msg(data.content, {icon: 1, time: 1000, shade: 0.4}, function () {
+                                    table.reload('tableId', {
+                                        url: '/getCommunity',
+                                        where: {},
+                                        page: {
+                                            curr: 1
+                                        }
+                                    });
+                                });
+                            }
+                          }
+                      });
+                  })
               }
           })
 

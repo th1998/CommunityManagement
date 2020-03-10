@@ -134,4 +134,17 @@ public class CommunityController {
         map.put("CommunityList",pageInfo);
         return map;
     }
+
+    //撤销社团 community-list
+    @RequestMapping("/undoCommunity")
+    @ResponseBody
+    public ResultMsg undoCommunity(Integer co_id){
+        int i = communityService.undoCommunity(co_id);
+        if(i>0){
+            communityService.delMember(co_id);
+            return new ResultMsg(1,"撤销成功");
+        }else{
+            return new ResultMsg(0,"撤销失败");
+        }
+    }
 }

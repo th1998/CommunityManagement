@@ -16,7 +16,7 @@ public class LoginController {
 
     @ResponseBody
     @RequestMapping("/Login")
-    public List<User> Login(String username, String password){
-        return loginService.Login(username,password);
+    public List<User> Login(String no, String password){
+        return loginService.Login(no,password);
     }
 }

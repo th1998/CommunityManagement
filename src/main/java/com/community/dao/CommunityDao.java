@@ -28,4 +28,10 @@ public interface CommunityDao {
     //模糊查询社团  community-list
     @Select("select * from c_community where co_name like '%${co_name}%'")
     public List<Community> sreachCommunity(@Param(value="co_name") String co_name);
+
+    //撤销社团 community-list
+    @Delete("delete from c_community where co_id = #{co_id}")
+    public int undoCommunity(Integer co_id);
+    @Delete("delete from c_member where co_id = #{co_id}")
+    public int delMember(Integer co_id);
 }

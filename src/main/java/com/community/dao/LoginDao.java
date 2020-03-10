@@ -11,6 +11,6 @@ import java.util.List;
 public interface LoginDao {
 
     //用户登录
-    @Select("select * from c_user where username = #{username} and password = #{password}")
-    public List<User> Login(@Param("username") String username,@Param("password") String password);
+    @Select("select * from c_user where no = #{no} and password = #{password}")
+    public List<User> Login(@Param("no") String no,@Param("password") String password);
 }

@@ -31,4 +31,8 @@ public class CommunityService {
 
     //模糊查询社团  community-list
     public List<Community> sreachCommunity(String co_name,String page, String limit){ return communityDao.sreachCommunity(co_name);}
+
+    //撤销社团 community-list
+    public int undoCommunity(Integer co_id){ return communityDao.undoCommunity(co_id);}
+    public int delMember(Integer co_id){ return communityDao.delMember(co_id);}
 }

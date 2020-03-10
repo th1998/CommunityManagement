@@ -1,149 +1,97 @@
-<!DOCTYPE HTML>
-<html lang="zxx">
-
+<!DOCTYPE html>
+<html>
 <head>
-	<title>登录</title>
-	<!-- Meta tag Keywords -->
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta charset="UTF-8" />
-	<meta name="keywords" content=""/>
-	<script src="./lib/layui/layui.js" charset="utf-8"></script>
-	<script>
-		addEventListener("load", function () {
-			setTimeout(hideURLbar, 0);
-		}, false);
-
-		function hideURLbar() {
-			window.scrollTo(0, 1);
-		}
-
-		layui.use(['form', 'layer'],function() {
-			var form = layui.form;
-			var layer = layui.layer;
-
-
-			document.onkeydown = function(e){
-				var ev = document.all ? window.event : e;
-				if(ev.keyCode==13) {
-					Login();
-				}
-			}
-
-			//登录请求
-			 Login = function(){
-			 	var username = $("#username").val();
-			 	var password = $("#password").val();
-			 	if(username==""){
-					layer.alert("用户名不能为空!");
-				}else if(password=="") {
-					layer.alert("密码不能为空!");
-				}else if(password.length > 20){
-					layer.alert("密码不能超过20个字符!");
-				}else{
-					$.ajax({
-						type: "POST",
-						url: "/login",
-						data: {username:$("#username").val(), password:$("#password").val()},
-						success: function(data){
-							console.log(data)
-							if(data.length == 1){
-								localStorage.setItem("username",data[0].username);
-								localStorage.setItem("u_id",data[0].id);
-								localStorage.setItem("c_role",data[0].role);
-								if(data[0].apply == null){
-									console.log("申请为空")
-								}else {
-									console.log("申请不为空")
-								}
-
-								if(data[0].community == null){
-									console.log("社团为空")
-									localStorage.setItem("co_id",-1);
-								}else{
-									console.log("社团不为空")
-									localStorage.setItem("co_id",data[0].community.co_id);
-								}
-								//localStorage.setItem("c_id",data[0].apply.c_id);
-								location.href="/index.html";
-							}else {
-								layer.alert("用户名或者密码不正确!");
-							}
-						}
-					});
-				}
-			}
-
-		})
-
-
-	</script>
-
-	<link rel="stylesheet" href="./css/login.css" type="text/css" media="all" />
-
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+<meta http-equiv="Pragma" content="no-cache"> 
+<meta http-equiv="Cache-Control" content="no-cache"> 
+<meta http-equiv="Expires" content="0"> 
+<title>登录</title>
+<link rel="stylesheet" href="./css/login2.css" type="text/css" media="all" />
+    <script src="./lib/layui/layui.js" charset="utf-8"></script>
+    <script src="./js/jquery.min.js"></script>
 </head>
 
 <body>
-	<!-- bg effect -->
-	<div id="bg">
-		<canvas></canvas>
-		<canvas></canvas>
-		<canvas></canvas>
-	</div>
-	<!-- //bg effect -->
-	<!-- title -->
-	<h1>社团管理系统登录</h1>
-	<!-- //title -->
-	<!-- content -->
-	<div class="sub-main-w3">
-		<form action="#" method="post">
-			<h2>现在登录
-				<i class="fa fa-long-arrow-down"></i>
-			</h2>
-			<div class="form-style-agile">
-				<label>
-					<i class="fa fa-user"></i>
-					用户名
-				</label>
-				<input  name="username" id="username" type="text"  lay-verify="required|username" lay-reqtext="用户名是必填项，岂能为空？" autocomplete="off">
-			</div>
-			<div class="form-style-agile">
-				<label>
-					<i class="fa fa-unlock-alt"></i>
-					密码
-				</label>
-				<input  name="password" id="password" type="password"lay-verify="required|password" lay-reqtext="密码是必填项，岂能为空？" autocomplete="off">
-			</div>
-			<!-- checkbox -->
-			<div class="wthree-text">
-				<ul>
-					<li>
-						<label class="anim">
-							<input type="checkbox" class="checkbox" required="">
-							<span>记住密码</span>
-						</label>
-					</li>
-					<li>
-						<a href="#">忘记密码?</a>
-					</li>
-				</ul>
-			</div>
-			<!-- //checkbox -->
-			<input type="button" value="登 录" onclick="Login()">
-		</form>
-	</div>
-	<!-- //content -->
+<div class="login_box">
+      <div class="login_l_img"><img src="./images/login-img.png" /></div>
+      <div class="login">
+          <div class="login_logo"><a href="#"><img src="images/login_logo.png" style="width: 120px;height: 120px;margin-left: -5px;margin-top: -3px;"/></a></div>
+          <div class="login_name">
+               <p>社团管理系统</p>
+          </div>
+          <form method="post">
+              <input name="no" id="no" type="text" placeholder="学号/工号" autocomplete="off" />
 
-	<!-- copyright -->
-	<div class="footer">
-		<p>Copyright &copy; 2019.Company name All rights reserved.</p>
-	</div>
-	<!-- //copyright -->
-
-	<script src="./js/jquery.min.js"></script>
-	<script src="./js/canva_moving_effect.js"></script>
-
-
+              <input name="password" type="password" id="password"  placeholder="密码" autocomplete="off"/>
+              <input value="登录" style="width:100%;" type="button" onclick="Login()">
+          </form>
+      </div>
+      <div class="copyright">xxxx 版权所有©2020 技术支持电话：023-58538256</div>
+</div>
+<div style="text-align:center;">
+</div>
 </body>
+<script>
+    addEventListener("load", function () {
+        setTimeout(hideURLbar, 0);
+    }, false);
 
+    function hideURLbar() {
+        window.scrollTo(0, 1);
+    }
+
+    layui.use(['form', 'layer'],function() {
+        var form = layui.form;
+        var layer = layui.layer;
+
+
+        document.onkeydown = function(e){
+            var ev = document.all ? window.event : e;
+            if(ev.keyCode==13) {
+                Login();
+            }
+        }
+
+        //登录请求
+        Login = function(){
+            var no = $("#no").val();
+            var password = $("#password").val();
+            if(no==""){
+                layer.alert("用户名不能为空!");
+            }else if(password=="") {
+                layer.alert("密码不能为空!");
+            }else if(password.length > 20){
+                layer.alert("密码不能超过20个字符!");
+            }else{
+                $.ajax({
+                    type: "POST",
+                    url: "/Login",
+                    data: {no:no, password:password},
+                    success: function(data){
+                        console.log(data)
+                        if(data.length == 1){
+                            localStorage.setItem("username",data[0].username);
+                            localStorage.setItem("u_id",data[0].id);
+                            localStorage.setItem("c_role",data[0].role);
+
+                            if(data[0].community == null){
+                                console.log("社团为空")
+                                localStorage.setItem("co_id",-1);
+                            }else{
+                                console.log("社团不为空")
+                                localStorage.setItem("co_id",data[0].community.co_id);
+                            }
+                            location.href="/index.html";
+                        }else {
+                            layer.alert("用户名或者密码不正确!");
+                        }
+                    }
+                });
+            }
+        }
+
+    })
+
+
+</script>
 </html>
