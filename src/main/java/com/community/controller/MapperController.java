@@ -26,7 +26,7 @@ public class MapperController {
     @RequestMapping("/login")
     public List<User> login(User user){
         User u = new User();
-        u.setUsername(user.getUsername());
+        u.setNo(user.getNo());
         u.setPassword(user.getPassword());
         return mapperService.login(u);
     }

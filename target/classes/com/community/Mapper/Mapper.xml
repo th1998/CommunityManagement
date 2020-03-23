@@ -46,7 +46,7 @@
         on u.id = c.u_id
 				left join (select * from c_apply) a
                 on u.id = a.u_id
-        where username = #{username} and password = #{password}
+        where no = #{no} and password = #{password}
     </select>
 
     <!--
